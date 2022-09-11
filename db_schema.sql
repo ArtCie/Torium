@@ -12,6 +12,7 @@ CREATE TABLE users(
     "timestamp" timestamp NOT NULL,
 	is_confirmed bool NOT NULL,
 	reminder_preferences reminder_preferences_type NULL,
+	cognito_user_id varchar(50) NOT NULL,
     CONSTRAINT users_PK PRIMARY KEY (id)
 );
 
