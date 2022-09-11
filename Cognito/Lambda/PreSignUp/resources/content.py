@@ -1,6 +1,3 @@
-from json import loads
-
-
 class Content:
     def __init__(self, email: str, cognito_user_id: str):
         self._email = email
