@@ -7,7 +7,6 @@ def log(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         logger = logging.getLogger(__name__)
-        logger.setLevel(logging.INFO)
         class_name = type(args[0]).__name__
         function_name = func.__name__
         method_attributes = inspect.getfullargspec(func)[0]
