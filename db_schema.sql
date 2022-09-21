@@ -87,18 +87,6 @@ ALTER TABLE event_reminders_logs ADD CONSTRAINT event_reminders_logs_erID_FK FOR
 ALTER TABLE event_reminders_logs ADD CONSTRAINT event_reminders_logs_uID_FK FOREIGN KEY(user_id) REFERENCES users(id);
 
 
-CREATE TABLE public.user_connections (
-	id serial4 NOT NULL,
-	user_from int4 NOT NULL,
-	user_to int4 NOT NULL,
-	"timestamp" timestamp NOT NULL,
-	"updated_timestamp" timestamp NOT NULL,
-	CONSTRAINT user_connections_PK PRIMARY KEY (id)
-);
-
-ALTER TABLE public.user_connections ADD CONSTRAINT user_connections_ufID_FK FOREIGN KEY (user_from) REFERENCES public.users(id);
-ALTER TABLE public.user_connections ADD CONSTRAINT user_connections_utID_FK FOREIGN KEY (user_to) REFERENCES public.users(id);
-
 CREATE TABLE public.events_users (
 	id serial4 NOT NULL,
 	event_id int4 NOT NULL,
@@ -111,3 +99,16 @@ CREATE TABLE public.events_users (
 
 ALTER TABLE public.events_users ADD CONSTRAINT events_users_uID_FK FOREIGN KEY (user_id) REFERENCES public.users(id);
 ALTER TABLE public.events_users ADD CONSTRAINT events_users_eID_FK FOREIGN KEY (event_id) REFERENCES public."events"(id);
+
+CREATE TABLE public.users_verification (
+	id serial4 NOT NULL,
+	user_id int4 NOT NULL,
+	mobile_number varchar(50) NOT NULL,
+	is_sent bool NOT NULL,
+	is_confirmed bool NOT NULL,
+	code varchar(50) NOT NULL,
+	timestamp timestamp NOT NULL,
+	CONSTRAINT users_verification_pk PRIMARY KEY (id)
+);
+
+ALTER TABLE users_verification add constraint users_verification_uID_FK foreign key(user_id) references users(id);
