@@ -8,7 +8,6 @@ from endpoints.groups.db_manager import DBManager
 class GroupManager(EndpointManager):
     @log
     def handle_request(self, endpoint_class, **kwargs):
-        print(kwargs)
         database = self._get_database()
         try:
             database.connect()
