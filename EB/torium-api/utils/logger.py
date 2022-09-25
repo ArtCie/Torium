@@ -13,11 +13,19 @@ def log(func):
         method_attributes = inspect.getfullargspec(func)[0]
         message = construct_logger(class_name, function_name, method_attributes, args)
         logger.info(message)
-        result = func(*args, **kwargs)
+        result = func(args[0], args[1], **kwargs)
         return result
     return wrapper
 
 
 def construct_logger(class_name, function_name, method_attributes, args):
-    return f"{class_name}.{function_name}(): " + ' '.join(
-        [f"{method_attributes[i]}: {args[i]}," for i in range(1, len(args))])[:-1]
+    base = f"{class_name}.{function_name}(): "
+    if args:
+        return base + ' '.join([f"{method_attributes[i]}: {args[i]}," for i in range(1, len(method_attributes))])
+    return base
+
+
+def log_exception(class_name: str, error: str):
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.INFO)
+    logger.exception(f"{class_name}: {error}")
