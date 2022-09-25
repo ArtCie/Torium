@@ -1,6 +1,5 @@
 from functools import wraps
 import inspect
-import logging
 
 
 def log(func):
@@ -10,8 +9,6 @@ def log(func):
         function_name = func.__name__
         method_attributes = inspect.getfullargspec(func)[0]
         message = construct_logger(class_name, function_name, method_attributes, args)
-        logger = logging.getLogger(__name__)
-        logger.setLevel(logging.DEBUG)
         logger.info(message)
         result = func(args[0], args[1], **kwargs)
         return result
