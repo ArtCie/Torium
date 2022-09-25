@@ -1,0 +1,283 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "0.0.1",
+    "title": "torium-api",
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "{Torium-URL}"
+    }
+  ],
+  "paths": {
+    "/groups": {
+      "get": {
+        "summary": "Get user groups",
+        "operationId": "user_groups",
+        "parameters": [
+          {
+            "name": "trm_user_id",
+            "in": "header",
+            "description": "ID of user",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User groups",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "groups": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "description": "group ID",
+                                  "type": "integer",
+                                  "example": "12"
+                                },
+                                "name": {
+                                  "description": "group name",
+                                  "type": "string",
+                                  "example": "Eagle Bielik"
+                                },
+                                "admin_id": {
+                                  "description": "group admin id",
+                                  "type": "integer",
+                                  "example": "1"
+                                }
+                              }
+                            }
+                          }
+                      }
+                    },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "SUCCESS"
+                        },
+                        "code": {
+                          "type": "integer",
+                          "example": 200
+                        }
+                      }
+                    }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "post": {
+        "summary": "Add user group",
+        "operationId": "user_groups",
+        "parameters": [
+          {
+            "name": "trm_admin_id",
+            "in": "header",
+            "description": "ID of user",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "group_name"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Post group response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": { },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer",
+                          "example": 200
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "SUCCESS"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "put": {
+        "summary": "update user group",
+        "operationId": "user_groups",
+        "parameters": [
+          {
+            "name": "trm_admin_id",
+            "in": "header",
+            "description": "ID of user",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": "12"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "group_name"
+                  },
+                  "admin_id": {
+                    "type": "integer",
+                    "example": "1"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Put group response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": { },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer",
+                          "example": 200
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "SUCCESS"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "delete": {
+        "summary": "delete user group",
+        "operationId": "user_groups",
+        "parameters": [
+          {
+            "name": "trm_admin_id",
+            "in": "header",
+            "description": "ID of user",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": "12"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Put group response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": { },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer",
+                          "example": 200
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "SUCCESS"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    }
+  }
+},
+  "security": [
+    {
+      "BasicAuth": [ ]
+    }
+  ]
+}
