@@ -1,4 +1,5 @@
 from functools import wraps
+from flask import request
 
 
 def log(func):
@@ -15,7 +16,10 @@ def log(func):
 
 
 def construct_logger(class_name, function_name, kwargs):
-    return f"{class_name}.{function_name}(): {kwargs}"
+    headers = {header_key[4:].replace('-', '_').lower(): header_value for (header_key, header_value)
+               in request.headers.items()
+               if header_key.lower().startswith('trm')}
+    return f"{class_name}.{function_name}(): kwargs: {kwargs}, headers: {headers}"
 
 
 def log_exception(class_name: str, error: str):
