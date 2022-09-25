@@ -1,13 +1,21 @@
 from functools import wraps
 import inspect
 import logging
+from logging.handlers import RotatingFileHandler
+from application import application
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+logger.setLevel(logging.DEBUG)
+handler = RotatingFileHandler('/var/log/application.log', maxBytes=1024, backupCount=5)
+handler.setFormatter(formatter)
+application.logger.addHandler(handler)
 
 
 def log(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
-        logger = logging.getLogger(__name__)
-        logger.setLevel(logging.INFO)
         class_name = type(args[0]).__name__
         function_name = func.__name__
         method_attributes = inspect.getfullargspec(func)[0]
