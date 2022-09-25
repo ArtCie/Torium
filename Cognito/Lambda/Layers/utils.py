@@ -4,6 +4,7 @@ from json import dumps
 
 def log_exception(class_name: str, error: str):
     logger = logging.getLogger(__name__)
+    logger.setLevel(logging.INFO)
     logger.exception(f"{class_name}: {error}")
 
 
