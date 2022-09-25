@@ -1,11 +1,11 @@
 from functools import wraps
 import inspect
-from application import logger
 
 
 def log(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
+        from application import logger
         class_name = type(args[0]).__name__
         function_name = func.__name__
         method_attributes = inspect.getfullargspec(func)[0]
