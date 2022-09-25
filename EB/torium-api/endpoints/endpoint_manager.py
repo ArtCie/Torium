@@ -14,7 +14,7 @@ class EndpointManager:
             print(f"{i=} {j}")
         headers = {header_key[4:].replace('-', '_').lower(): header_value for (header_key, header_value)
                    in request.headers.items()
-                   if header_key.startswith('TRM-')}
+                   if header_key.lower().startswith('trm')}
         return {**kwargs, **headers}
 
     @staticmethod
