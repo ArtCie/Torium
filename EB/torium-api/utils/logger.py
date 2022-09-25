@@ -24,6 +24,5 @@ def construct_logger(class_name, function_name, method_attributes, args):
 
 
 def log_exception(class_name: str, error: str):
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.INFO)
+    from application import logger
     logger.exception(f"{class_name}: {error}")
