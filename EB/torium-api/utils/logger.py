@@ -1,5 +1,6 @@
 from functools import wraps
 import inspect
+from application import logger
 
 
 def log(func):
