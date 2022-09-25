@@ -1,4 +1,4 @@
-from secret_manager import DatabaseConfig
+from database.secret_manager import DatabaseConfig
 import psycopg2
 from psycopg2 import extras
 
@@ -26,6 +26,10 @@ class DBManagerBase:
     def commit_changes(self):
         self.connection.commit()
 
+    def close_database(self):
+        self.close_cursor()
+        self.close_connection()
+
     def close_cursor(self):
         if self.cursor:
             self.cursor.close()
@@ -43,4 +47,4 @@ class DBManagerBase:
         return self.cursor.fetchall()
 
     def execute_query(self, query, data):
-        self.cursor.execute_query(query, data)
+        self.cursor.execute(query, data)
