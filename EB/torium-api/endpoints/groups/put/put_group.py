@@ -1,6 +1,6 @@
 from endpoints.groups.db_manager import DBManager
 from endpoints.groups.content import ContentConverter
-from endpoints.groups.exceptions import AccessDenied
+from endpoints.exceptions import AccessDenied
 
 
 class PutGroup:

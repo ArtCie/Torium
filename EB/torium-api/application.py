@@ -18,9 +18,9 @@ application.register_blueprint(organizations_handler)
 logger = logging.getLogger(__name__)
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 logger.setLevel(logging.DEBUG)
-# handler = RotatingFileHandler('/var/log/application.log', maxBytes=1024, backupCount=5)
-# handler.setFormatter(formatter)
-# application.logger.addHandler(handler)
+handler = RotatingFileHandler('/var/log/application.log', maxBytes=1024, backupCount=5)
+handler.setFormatter(formatter)
+application.logger.addHandler(handler)
 
 cors = CORS(
     application,
