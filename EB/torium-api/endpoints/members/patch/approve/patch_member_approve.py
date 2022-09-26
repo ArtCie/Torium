@@ -1,0 +1,2 @@
+class PatchMemberApprove:
+    pass
