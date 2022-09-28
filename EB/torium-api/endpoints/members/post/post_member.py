@@ -5,7 +5,7 @@ from endpoints.members.content import ContentConverter
 class PostMember:
     def __init__(self, kwargs: dict, db_manager: DBManager):
         self._db_manager = db_manager
-        self._content = ContentConverter.convert(kwargs, status='INIT')
+        self._content = ContentConverter.convert(kwargs, status='pending')
 
     def process_request(self):
         self._post_group()
