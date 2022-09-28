@@ -26,7 +26,30 @@ class Content:
         return self._timestamp
 
 
+class ContentMember:
+    def __init__(self, user_id: int, username: str, email: str):
+        self._user_id = user_id
+        self._username = username
+        self._email = email
+
+    @property
+    def user_id(self) -> int:
+        return self._user_id
+
+    @property
+    def username(self) -> str:
+        return self._username
+
+    @property
+    def email(self) -> str:
+        return self._email
+
+
 class ContentConverter:
     @staticmethod
     def convert(content: dict, status=None) -> Content:
         return Content(content["user_id"], content["group_id"], status)
+
+    @staticmethod
+    def convert_members(content: dict) -> ContentMember:
+        return ContentMember(content["id"], content["username"], content["email"])
