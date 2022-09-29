@@ -39,7 +39,8 @@ class DBManager(DBManagerBase):
             SELECT
                 u.id,
                 u.username,
-                u.email
+                u.email,
+                ug.status
             FROM
                 users_groups ug
             INNER JOIN
@@ -71,8 +72,36 @@ class DBManager(DBManagerBase):
         query = """
             INSERT INTO
                 users_groups
-                (group_id, user_id, timestamp)
+                (group_id, user_id, status, timestamp)
             VALUES
-                (%(group_id)s, %(user_id)s, %(timestamp)s)
+                (%(group_id)s, %(user_id)s, %(status)s, %(timestamp)s)
+        """
+        self.execute_query(query, data)
+
+    def valid_permissions(self, data):
+        query = """
+            SELECT 
+                1
+            FROM
+                users_groups
+            WHERE
+                group_id = %(group_id)s
+            AND 
+                user_id = %(admin_id)s
+            AND 
+                status = %(status)s
+        """
+        return self.fetch_one(query, data)
+
+    def update_users_group_status(self, data):
+        query = """
+            UPDATE
+                users_groups
+            SET
+                status = %(status)s
+            WHERE
+                group_id = %(group_id)s
+            AND 
+                user_id = %(user_id)s
         """
         self.execute_query(query, data)

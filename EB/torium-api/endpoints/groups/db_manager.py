@@ -58,8 +58,9 @@ class DBManager(DBManagerBase):
             (name, admin_id, timestamp)
             VALUES
             (%(name)s, %(admin_id)s, %(timestamp)s)
+            RETURNING id;
         """
-        self.execute_query(query, data)
+        return self.fetch_one(query, data)
 
     def get_groups(self, data):
         query = """
@@ -89,5 +90,15 @@ class DBManager(DBManagerBase):
                 admin_id = %(admin_id)s
             WHERE
                 id = %(id)s
+        """
+        self.execute_query(query, data)
+
+    def insert_users_groups(self, data):
+        query = """
+            INSERT INTO
+                users_groups
+                (group_id, user_id, status, timestamp)
+            VALUES
+                (%(group_id)s, %(user_id)s, %(status)s, %(timestamp)s)
         """
         self.execute_query(query, data)

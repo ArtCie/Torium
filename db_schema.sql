@@ -2,6 +2,7 @@ CREATE TYPE reminder_preferences_type AS ENUM ('SMS', 'PUSH', 'EMAIL');
 CREATE TYPE status_type AS ENUM('confirmed', 'pending', 'rejected');
 CREATE TYPE reminder_type AS ENUM('periodical', 'once');
 CREATE TYPE event_reminders_logs_status_type AS ENUM('delivered', 'failed', 'answered');
+CREATE TYPE member_status AS ENUM('standard', 'admin', 'moderator');
 
 
 CREATE TABLE users(
@@ -31,6 +32,7 @@ CREATE TABLE users_groups(
 	group_id int4 NOT NULL,
 	user_id int4 NOT NULL,
 	"timestamp" timestamp NOT NULL,
+	status member_status NULL,
 	CONSTRAINT users_groups_PK PRIMARY KEY(id)
 );
 ALTER TABLE users_groups ADD CONSTRAINT user_groups_gID_FK FOREIGN KEY(group_id) REFERENCES "groups"(id);
