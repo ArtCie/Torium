@@ -10,6 +10,7 @@ class EndpointManager:
 
     @staticmethod
     def _add_headers_to_payload(kwargs):
+
         headers = {header_key[4:].replace('-', '_').lower(): header_value for (header_key, header_value)
                    in request.headers.items()
                    if header_key.lower().startswith('trm')}

@@ -12,6 +12,17 @@ class DBManager(DBManagerBase):
         """
         self.execute_query(query, data)
 
+    def delete_invitation(self, data):
+        query = """
+            DELETE FROM
+                group_invitation_logs
+            WHERE
+                user_to = %(user_id)s
+            AND 
+                group_id = %(group_id)s
+        """
+        self.execute_query(query, data)
+
     def delete_member(self, data):
         query = """
             DELETE FROM
@@ -52,7 +63,7 @@ class DBManager(DBManagerBase):
             WHERE 
                 group_id = %(group_id)s
             AND 
-                user_id = %(user_id)        
+                user_to = %(user_id)s        
         """
         self.execute_query(query, data)
 
@@ -60,7 +71,7 @@ class DBManager(DBManagerBase):
         query = """
             INSERT INTO
                 users_groups
-                (group_id, user_id, timemstamp)
+                (group_id, user_id, timestamp)
             VALUES
                 (%(group_id)s, %(user_id)s, %(timestamp)s)
         """
