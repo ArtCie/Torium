@@ -501,7 +501,84 @@
                   "properties": {
                     "status": {
                       "type": "string",
-                      "example": "approved"
+                      "example": "confirmed"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successfully approved/rejected invitation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "data": { },
+                      "status": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "integer",
+                            "example": 200
+                          },
+                          "message": {
+                            "type": "string",
+                            "example": "SUCCESS"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+    "/group/members/role":
+      {
+        "patch": {
+          "summary": "update user group role",
+          "operationId": "user_groups",
+          "parameters": [
+            {
+              "name": "trm-admin-id",
+              "in": "header",
+              "description": "ID of admin",
+              "required": true,
+              "example": 1,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "trm-group-id",
+              "in": "header",
+              "description": "ID of user",
+              "required": true,
+              "example": 1,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "moderator"
+                    },
+                    "user_id": {
+                      "type": "integer",
+                      "example": 1
                     }
                   }
                 }

@@ -27,10 +27,11 @@ class Content:
 
 
 class ContentMember:
-    def __init__(self, user_id: int, username: str, email: str):
+    def __init__(self, user_id: int, username: str, email: str, status: str):
         self._user_id = user_id
         self._username = username
         self._email = email
+        self._status = status
 
     @property
     def user_id(self) -> int:
@@ -44,6 +45,10 @@ class ContentMember:
     def email(self) -> str:
         return self._email
 
+    @property
+    def status(self) -> str:
+        return self._status
+
 
 class ContentConverter:
     @staticmethod
@@ -52,4 +57,4 @@ class ContentConverter:
 
     @staticmethod
     def convert_members(content: dict) -> ContentMember:
-        return ContentMember(content["id"], content["username"], content["email"])
+        return ContentMember(content["id"], content["username"], content["email"], content["status"])
