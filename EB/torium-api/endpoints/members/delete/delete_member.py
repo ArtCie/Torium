@@ -8,7 +8,15 @@ class DeleteMember:
         self._content = ContentConverter.convert(kwargs)
 
     def process_request(self):
+        self._delete_invitation()
         self._delete_member()
+
+    def _delete_invitation(self):
+        data = {
+            "group_id": self._content.group_id,
+            "user_id": self._content.user_id,
+        }
+        self._db_manager.delete_invitation(data)
 
     def _delete_member(self):
         data = {

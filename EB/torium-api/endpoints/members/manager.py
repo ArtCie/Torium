@@ -2,7 +2,7 @@ from utils.logger import log_exception, log
 from database.secret_manager import SecretManager
 
 from endpoints.endpoint_manager import EndpointManager
-from endpoints.groups.db_manager import DBManager
+from endpoints.members.db_manager import DBManager
 
 
 class MemberManager(EndpointManager):

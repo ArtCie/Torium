@@ -4,7 +4,7 @@ from json import loads
 
 class SecretManager:
     def __init__(self):
-        self.client = boto3.client('secretsmanager', region_name='eu-central-1')
+        self.client = boto3.client('secretsmanager', region_name='eu-central-1', aws_access_key_id="AKIAQDJ5UJMM3DG7QV6E", aws_secret_access_key="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")
         self.SECRET_ID = 'toddy-secret'
 
     def get_db_config(self):
