@@ -9,7 +9,6 @@ class DBManager(DBManagerBase):
             SET
                 is_confirmed = %(is_confirmed)s
             WHERE
-                cognito_user_id = %(cognito_used_id)s
+                cognito_user_id = %(cognito_user_id)s
         """
         self.execute_query(query, data)
-
