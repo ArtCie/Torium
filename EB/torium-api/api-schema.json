@@ -85,7 +85,7 @@
         }
       }
     },
-    "post": {
+      "post": {
         "summary": "Add user group",
         "operationId": "user_groups",
         "parameters": [
@@ -145,7 +145,7 @@
           }
         }
     },
-    "put": {
+      "put": {
         "summary": "update user group",
         "operationId": "user_groups",
         "parameters": [
@@ -213,7 +213,7 @@
           }
         }
     },
-    "delete": {
+      "delete": {
         "summary": "delete user group",
         "operationId": "user_groups",
         "parameters": [
@@ -246,7 +246,7 @@
         },
         "responses": {
           "200": {
-            "description": "Put group response",
+            "description": "delete group",
             "content": {
               "application/json": {
                 "schema": {
@@ -273,7 +273,271 @@
           }
         }
     }
-  }
+  },
+    "/group/members": {
+      "get": {
+        "summary": "Get group members",
+        "operationId": "group_members",
+        "parameters": [
+          {
+            "name": "trm-user-id",
+            "in": "header",
+            "description": "ID of user",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "trm-group-id",
+            "in": "header",
+            "description": "ID of group",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "group members",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "groups": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "description": "group ID",
+                                  "type": "integer",
+                                  "example": "12"
+                                },
+                                "username": {
+                                  "description": "user name",
+                                  "type": "string",
+                                  "example": "Eagle Bielik"
+                                },
+                                "email": {
+                                  "description": "user email",
+                                  "type": "integer",
+                                  "example": "1"
+                                }
+                              }
+                            }
+                          }
+                      }
+                    },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "SUCCESS"
+                        },
+                        "code": {
+                          "type": "integer",
+                          "example": 200
+                        }
+                      }
+                    }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+      "post": {
+        "summary": "Invite user to group",
+        "operationId": "user_groups",
+        "parameters": [
+          {
+            "name": "trm-user-id",
+            "in": "header",
+            "description": "ID of user",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "trm-group-id",
+            "in": "header",
+            "description": "ID of group",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Invite user to group",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": { },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer",
+                          "example": 200
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "SUCCESS"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+      "delete": {
+        "summary": "delete user from group",
+        "operationId": "user_groups",
+        "parameters": [
+          {
+            "name": "trm-user-id",
+            "in": "header",
+            "description": "ID of user",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "trm-group-id",
+            "in": "header",
+            "description": "ID of user",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "remove user from group",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": { },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer",
+                          "example": 200
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "SUCCESS"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    }
+    },
+    "/group/members/status":
+      {
+        "patch": {
+          "summary": "update invitation status",
+          "operationId": "user_groups",
+          "parameters": [
+            {
+              "name": "trm-user-id",
+              "in": "header",
+              "description": "ID of user",
+              "required": true,
+              "example": 1,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "trm-group-id",
+              "in": "header",
+              "description": "ID of user",
+              "required": true,
+              "example": 1,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "approved"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successfully approved/rejected invitation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "data": { },
+                      "status": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "integer",
+                            "example": 200
+                          },
+                          "message": {
+                            "type": "string",
+                            "example": "SUCCESS"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
 },
   "security": [
     {
