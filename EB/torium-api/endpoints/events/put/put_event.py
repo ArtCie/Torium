@@ -1,0 +1,2 @@
+class PutEvent:
+    pass
