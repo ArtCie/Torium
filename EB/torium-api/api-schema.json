@@ -614,7 +614,69 @@
             }
           }
         }
+      },
+    "/organizations": {
+      "get": {
+        "summary": "Get organizations details",
+        "operationId": "organizations",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "group members",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "organizations": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "logo_link": {
+                                  "description": "s3 presigned logo link",
+                                  "type": "string",
+                                  "example": "pekao.png"
+                                },
+                                "name": {
+                                  "description": "organization name",
+                                  "type": "string",
+                                  "example": "pekao"
+                                },
+                                "url": {
+                                  "description": "link to organization webpage",
+                                  "type": "string",
+                                  "example": "https://pekao.pl"
+                                }
+                              }
+                            }
+                          }
+                      }
+                    },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "SUCCESS"
+                        },
+                        "code": {
+                          "type": "integer",
+                          "example": 200
+                        }
+                      }
+                    }
+                }
+              }
+            }
+          }
+        }
       }
+    }
+    }
 },
   "security": [
     {
