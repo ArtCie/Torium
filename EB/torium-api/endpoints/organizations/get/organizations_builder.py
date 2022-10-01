@@ -13,7 +13,7 @@ class OrganizationsBuilder:
             {
                 "name": organization.name,
                 "url": organization.url,
-                "file_name": self.s3_manager.get_presigned_url(organization.file_name)
+                "logo_link": self.s3_manager.get_presigned_url(organization.file_name)
             }
             for organization in organizations
         ]
