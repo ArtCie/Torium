@@ -114,3 +114,17 @@ CREATE TABLE public.users_verification (
 );
 
 ALTER TABLE users_verification add constraint users_verification_uID_FK foreign key(user_id) references users(id);
+
+CREATE TABLE organizations(
+    id serial4 NOT NULL,
+    name varchar(200) NOT NULL,
+    url varchar(200) NOT NULL,
+    file_name varchar(200) NOT NULL,
+    CONSTRAINT organizations_PK PRIMARY KEY (id)
+);
+
+INSERT INTO organizations(name, url, file_name) VALUES
+('Santander', 'https://www.centrum24.pl/centrum24-web/login', 'santander.png'),
+('PKO', 'https://www.ipko.pl/', 'pko.png'),
+('Pekao', 'https://www.pekao24.pl/logowanie', 'pekao.png'),
+('ING', 'https://login.ingbank.pl/mojeing/app/#login', 'ing.png');
