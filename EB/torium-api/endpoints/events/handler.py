@@ -1,8 +1,30 @@
-from flask import Blueprint
+from flask import Blueprint, request
+from endpoints.events.manager import EventManager
+
+from endpoints.events.delete.delete_event import DeleteEvent
+from endpoints.events.post.post_event import PostEvent
+from endpoints.events.get.get_events import GetEvents
+from endpoints.events.put.put_event import PutEvent
 
 events_handler = Blueprint('events', __name__)
+event_manager = EventManager()
 
 
-@events_handler.route('/events', methods=['GET', 'POST'])
+@events_handler.route('/event', methods=['POST'])
 def route():
-    pass
+    return event_manager.handle_request(PostEvent, payload=request.json)
+
+
+@events_handler.route('/events', methods=['GET'])
+def route():
+    return event_manager.handle_request(GetEvents, payload=request.args)
+
+
+@events_handler.route('/event', methods=['PUT'])
+def route():
+    return event_manager.handle_request(PutEvent, payload=request.json)
+
+
+@events_handler.route('/event', methods=['DELETE'])
+def route():
+    return event_manager.handle_request(DeleteEvent, payload=request.json)
