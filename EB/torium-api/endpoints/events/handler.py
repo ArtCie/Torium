@@ -11,20 +11,20 @@ event_manager = EventManager()
 
 
 @events_handler.route('/event', methods=['POST'])
-def route():
+def post():
     return event_manager.handle_request(PostEvent, payload=request.json)
 
 
-@events_handler.route('/events', methods=['GET'])
-def route():
+@events_handler.route('/event', methods=['GET'])
+def get():
     return event_manager.handle_request(GetEvents, payload=request.args)
 
 
 @events_handler.route('/event', methods=['PUT'])
-def route():
+def put():
     return event_manager.handle_request(PutEvent, payload=request.json)
 
 
 @events_handler.route('/event', methods=['DELETE'])
-def route():
+def delete():
     return event_manager.handle_request(DeleteEvent, payload=request.json)

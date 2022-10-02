@@ -57,6 +57,7 @@ CREATE TABLE events(
 	budget float4 NULL,
 	description varchar(500) NULL,
 	group_id int4 NOT NULL,
+	event_timestamp timestamp NOT NULL,
 	"timestamp" timestamp NOT NULL,
 	updated_timestamp timestamp NULL,
 	reminder reminder_type NOT NULL,
@@ -94,8 +95,6 @@ CREATE TABLE public.events_users (
 	event_id int4 NOT NULL,
 	user_id int4 NOT NULL,
 	"timestamp" timestamp NOT NULL,
-	"status" status_type NOT NULL,
-	"updated_timestamp" timestamp NOT NULL,
 	CONSTRAINT events_users_PK PRIMARY KEY (id)
 );
 
