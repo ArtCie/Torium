@@ -676,6 +676,350 @@
         }
       }
     }
+    },
+    "/event": {
+      "post": {
+        "summary": "Add event",
+        "operationId": "events",
+        "parameters": [
+          {
+            "name": "trm-group-id",
+            "in": "header",
+            "description": "ID of group",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "is_budget": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "budget": {
+                    "type": "number",
+                    "example": "123.123"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "test"
+                  },
+                  "event_timestamp": {
+                    "type": "string",
+                    "example": "01.01.2022 00:00:00"
+                  },
+                  "reminder": {
+                    "type": "string",
+                    "example": "periodical"
+                  },
+                  "schedule_period": {
+                    "type": "string",
+                    "example": "1 day"
+                  },
+                  "users": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "example": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Post group response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": { },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer",
+                          "example": 200
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "SUCCESS"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get user events",
+        "operationId": "user_events",
+        "parameters": [
+          {
+            "name": "trm-user-id",
+            "in": "header",
+            "description": "ID of user",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User events",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "groups": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "description": "event ID",
+                                  "type": "integer",
+                                  "example": 12
+                                },
+                                "is_budget": {
+                                  "description": "indicates whether event has a budget",
+                                  "type": "boolean",
+                                  "example": true
+                                },
+                                "budget": {
+                                  "description": "event budget",
+                                  "type": "number",
+                                  "example": 12.34
+                                },
+                                "description": {
+                                  "description": "event description",
+                                  "type": "string",
+                                  "example": "example"
+                                },
+                                "event_timestamp": {
+                                  "description": "timestamp of given timestamp",
+                                  "type": "string",
+                                  "example": "12"
+                                },
+                                "group_id": {
+                                  "description": "group ID",
+                                  "type": "integer",
+                                  "example": 12
+                                },
+                                "reminder": {
+                                  "description": "indicates if reminder should be sent once or periodical",
+                                  "type": "string",
+                                  "example": "periodical"
+                                },
+                                "schedule_period": {
+                                  "description": "interval - how often send a reminder",
+                                  "type": "string",
+                                  "example": "1 day"
+                                },
+                                "users": {
+                                  "description": "users in given event",
+                                  "type": "array",
+                                  "items": {
+                                    "type": "integer",
+                                    "example": 1
+                                  }
+                                }
+                              }
+                            }
+                          }
+                      }
+                    },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "SUCCESS"
+                        },
+                        "code": {
+                          "type": "integer",
+                          "example": 200
+                        }
+                      }
+                    }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+      "put": {
+        "summary": "update event",
+        "operationId": "event",
+        "parameters": [
+          {
+            "name": "trm-user-id",
+            "in": "header",
+            "description": "ID of user",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "is_budget": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "budget": {
+                    "type": "number",
+                    "example": "123.123"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "test"
+                  },
+                  "event_timestamp": {
+                    "type": "string",
+                    "example": "01.01.2022 00:00:00"
+                  },
+                  "reminder": {
+                    "type": "string",
+                    "example": "periodical"
+                  },
+                  "schedule_period": {
+                    "type": "string",
+                    "example": "1 day"
+                  },
+                  "users": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "example": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Put event",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": { },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer",
+                          "example": 200
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "SUCCESS"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+      "delete": {
+        "summary": "delete event",
+        "operationId": "event",
+        "parameters": [
+          {
+            "name": "trm-user-id",
+            "in": "header",
+            "description": "ID of user",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": "12"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "delete event",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": { },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer",
+                          "example": 200
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "SUCCESS"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    }
     }
 },
   "security": [

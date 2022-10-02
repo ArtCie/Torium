@@ -129,6 +129,7 @@ class DBManager(DBManagerBase):
     def get_events(self, data):
         query = """
             SELECT
+                e.id,
                 e.budget,
                 e.is_budget,
                 e.description,
