@@ -714,7 +714,7 @@
                   },
                   "event_timestamp": {
                     "type": "string",
-                    "example": "01.01.2022 00:00:00"
+                    "example": "2023-11-11 18:00:00.00"
                   },
                   "reminder": {
                     "type": "string",

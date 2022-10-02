@@ -4,7 +4,7 @@ from typing import Optional
 
 class Content:
     def __init__(self, id: int, is_budget: bool, budget: float,
-                 description: str, group_id: int, event_timestamp: datetime,
+                 description: str, group_id: int, event_timestamp: str,
                  reminder: str, schedule_period: str, users: Optional[list]):
         self._id = id
         self._is_budget = is_budget
@@ -34,7 +34,7 @@ class Content:
         return self._description
 
     @property
-    def event_timestamp(self) -> datetime:
+    def event_timestamp(self) -> str:
         return self._event_timestamp
 
     @property
@@ -62,5 +62,5 @@ class ContentConverter:
     @staticmethod
     def convert(content: dict) -> Content:
         return Content(content.get("id"), content["is_budget"], content["budget"],
-                       content["description"], content["event_timestamp"], content["group_id"],
-                       content["reminder"], content["schedule_period"], content["users"])
+                       content["description"], content["group_id"], str(content["event_timestamp"]),
+                       content["reminder"], str(content["schedule_period"]), content["users"])

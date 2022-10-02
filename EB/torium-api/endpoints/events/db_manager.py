@@ -137,7 +137,7 @@ class DBManager(DBManagerBase):
                 e.event_timestamp,
                 e.reminder,
                 e.schedule_period,
-                (SELECT user_id from events_users WHERE event_id = e.id) as users
+                ARRAY(SELECT user_id from events_users WHERE event_id = e.id) as users
             FROM
                 events e 
             INNER JOIN
