@@ -2,6 +2,8 @@ from endpoints.events.db_manager import DBManager
 from endpoints.events.content import ContentConverter
 from endpoints.exceptions import AccessDenied
 
+from psycopg2.extras import DictRow
+
 
 class PutEvent:
     def __init__(self, kwargs: dict, db_manager: DBManager):
@@ -45,10 +47,10 @@ class PutEvent:
         data = {
             "id": self._content.id
         }
-        return self._db_manager.select_event_users(data)
+        return self._db_manager.select_event_users(data)[0]
 
-    def _insert_event_users(self, current_users: list):
-        users_to_insert = set(self._content.users) - set(current_users)
+    def _insert_event_users(self, current_users: DictRow):
+        users_to_insert = set(self._content.users) - set(list(current_users))
         for user_id in users_to_insert:
             self._insert_event_user(user_id)
 
@@ -60,8 +62,8 @@ class PutEvent:
         }
         self._db_manager.insert_event_user(data)
 
-    def _delete_event_users(self, current_users: list):
-        users_to_remove = set(current_users) - set(self._content.users)
+    def _delete_event_users(self, current_users: DictRow):
+        users_to_remove = set(current_users) - set(list(self._content.users))
         for user_id in users_to_remove:
             self._delete_event_user(user_id)
 
