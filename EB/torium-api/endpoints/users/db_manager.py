@@ -54,7 +54,7 @@ class DBManager(DBManagerBase):
             WHERE
                 id = %(user_id)s
         """
-        self.fetch_one(query, data)
+        self.execute_query(query, data)
 
     def init_phone_number(self, data):
         query = """

@@ -1020,6 +1020,283 @@
           }
         }
     }
+    },
+    "/users": {
+      "get": {
+        "summary": "Get user details",
+        "operationId": "users",
+        "parameters": [
+          {
+            "name": "trm-user-id",
+            "in": "header",
+            "description": "ID of user",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User events",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "groups": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "description": "user ID",
+                                  "type": "integer",
+                                  "example": 1
+                                },
+                                "username": {
+                                  "description": "username",
+                                  "type": "string",
+                                  "example": "username"
+                                },
+                                "email": {
+                                  "description": "user email",
+                                  "type": "string",
+                                  "example": "test@gmail.com"
+                                },
+                                "mobile_number": {
+                                  "description": "user mobile number",
+                                  "type": "string",
+                                  "example": "+482135489054209"
+                                },
+                                "reminder_preferences": {
+                                  "description": "event preferences",
+                                  "type": "string",
+                                  "example": "SMS"
+                                },
+                                "cognito_user_id": {
+                                  "description": "cognito user id",
+                                  "type": "string",
+                                  "example": "dafs;nf-fdafdsf-vcxstsrw"
+                                },
+                                "device_arn": {
+                                  "description": "sns device arn",
+                                  "type": "string",
+                                  "example": "arn::sns-re3rwafaw"
+                                }
+                              }
+                            }
+                          }
+                      }
+                    },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "SUCCESS"
+                        },
+                        "code": {
+                          "type": "integer",
+                          "example": 200
+                        }
+                      }
+                    }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    },
+    "/users/preferences": {
+        "patch": {
+          "summary": "update reminder preferences",
+          "operationId": "users",
+          "parameters": [
+            {
+              "name": "trm-user-id",
+              "in": "header",
+              "description": "ID of user",
+              "required": true,
+              "example": 1,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reminder_preferences": {
+                      "type": "string",
+                      "example": "EMAIL"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successfully updated preferences",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "data": { },
+                      "status": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "integer",
+                            "example": 200
+                          },
+                          "message": {
+                            "type": "string",
+                            "example": "SUCCESS"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/users/mobile": {
+      "post": {
+        "summary": "Init phone number update",
+        "operationId": "events",
+        "parameters": [
+          {
+            "name": "trm-user-id",
+            "in": "header",
+            "description": "ID of user",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "mobile_number": {
+                    "type": "string",
+                    "example": "+48792531493"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Post group response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": { },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer",
+                          "example": 200
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "SUCCESS"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+          "summary": "update mobile number",
+          "operationId": "users",
+          "parameters": [
+            {
+              "name": "trm-user-id",
+              "in": "header",
+              "description": "ID of user",
+              "required": true,
+              "example": 1,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "example": "543795"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successfully updated mobile_number",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "data": { },
+                      "status": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "integer",
+                            "example": 200
+                          },
+                          "message": {
+                            "type": "string",
+                            "example": "SUCCESS"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
     }
 },
   "security": [

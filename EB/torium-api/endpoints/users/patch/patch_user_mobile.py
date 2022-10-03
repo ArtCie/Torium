@@ -2,7 +2,7 @@ from endpoints.users.db_manager import DBManager
 from endpoints.exceptions import WrongCode
 
 
-class PatchUserPreferences:
+class PatchUserMobile:
     def __init__(self, kwargs: dict, db_manager: DBManager):
         self._db_manager = db_manager
         self._user_id = kwargs["user_id"]
@@ -14,6 +14,7 @@ class PatchUserPreferences:
 
     def _confirm_code(self):
         data = {
+            "is_confirmed": True,
             "user_id": self._user_id,
             "code": self._code
         }
