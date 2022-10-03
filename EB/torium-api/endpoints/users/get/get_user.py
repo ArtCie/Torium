@@ -11,15 +11,14 @@ class GetUser:
     def process_request(self) -> dict:
         user = self._get_user()
         parsed_user = self._parse_user([user])
-        return ObjectBuilder.build_object(parsed_user)
+        return ObjectBuilder.build_object(parsed_user)[0]
 
     def _get_user(self) -> dict:
         data = {
             "user_id": self._user_id
         }
-        return self._db_manager.get_user(data)[0]
+        return self._db_manager.get_user(data)
 
     @staticmethod
     def _parse_user(groups: list) -> list:
         return [ContentConverter.convert(row) for row in groups]
-
