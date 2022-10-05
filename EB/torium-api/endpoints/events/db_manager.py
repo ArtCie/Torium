@@ -148,3 +148,16 @@ class DBManager(DBManagerBase):
                 eu.user_id = %(user_id)s
         """
         return self.fetch_all(query, data)
+
+    def valid_latency(self, data):
+        query = """
+            SELECT
+                1
+            FROM
+                event_reminders
+            WHERE
+                now() - trigger_timestamp > '1 day'::interval
+            AND 
+                event_id = %(event_id)s
+        """
+        return self.fetch_one(query, data)
