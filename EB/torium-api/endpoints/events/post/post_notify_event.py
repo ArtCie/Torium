@@ -33,8 +33,8 @@ class PostNotifyEvent:
     def _send_notifications(self):
         message = {
             "event_id": {
-                'DataType': 'String',
-                'StringValue': str(self._event_id)
+                "DataType": "String",
+                "StringValue": str(self._event_id)
             }
         }
-        self._sqs_manager.create_sqs_notify_event_message(message)
+        self._sqs_manager.create_sqs_schedule_notifications_event(message)

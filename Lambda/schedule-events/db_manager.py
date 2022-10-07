@@ -1,0 +1,46 @@
+from db_manager_base import DBManagerBase
+
+
+class DBManager(DBManagerBase):
+    def select_events(self, data):
+        query = """    
+            SELECT
+                id,
+                event_timestamp
+            FROM
+                events
+            WHERE
+                 event_timestamp::time - %(timestamp)s::time < '1 minute'::interval 
+            AND 
+                (
+                    (
+                        reminder = 'once'
+                    AND
+                        date_trunc('minute', event_timestamp - schedule_period) = date_trunc('minute', %(timestamp)s)
+                    )
+                OR 
+                    (
+                        reminder = 'periodical'
+                    AND 
+                        (
+                            (
+                                schedule_period = '1 week'::interval 
+                            AND 
+                                extract(dow from timestamp %(timestamp)s) = extract(dow from event_timestamp)
+                            )
+                        OR 
+                            (
+                                schedule_period = '1 day'::interval 
+                            )
+                        OR 
+                            (
+                                schedule_period = '1 month'::interval 
+                            AND 
+                                extract(day from timestamp %(timestamp)s) = extract(day from event_timestamp)
+                            )
+                        )
+                    )
+                )
+        """
+        return self.fetch_all(query, data)
+
