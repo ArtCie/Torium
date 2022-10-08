@@ -2,7 +2,7 @@ from secret_manager import SecretManager
 import logging
 from json import loads
 
-from schedule_notifications_manager import ScheduleEventsManager
+from send_sms_manager import SendSmsManager
 from db_manager import DBManager
 
 
@@ -17,5 +17,5 @@ def lambda_handler(event: dict, context: dict) -> dict:
     db_manager = DBManager(db_config)
     db_manager.connect()
 
-    schedule_events_manager = ScheduleEventsManager(db_manager, content)
-    return schedule_events_manager.process()
+    send_sms_manager = SendSmsManager(db_manager, content)
+    return send_sms_manager.process()
