@@ -5,7 +5,7 @@ from db_manager import DBManager
 
 from datetime import datetime
 from sqs_manager import SqsManager
-from event_builder import EventBuilder, Event
+from event_builder import EventBuilder
 import json
 
 class ScheduleEventsManager:
@@ -13,6 +13,7 @@ class ScheduleEventsManager:
     def __init__(self, db_manager: DBManager):
         self._db_manager = db_manager
         self.s3_manager = SqsManager()
+        self._timestamp = datetime.utcnow()
 
     @log
     def process(self) -> dict:
@@ -34,7 +35,7 @@ class ScheduleEventsManager:
 
     def _select_events(self) -> list:
         data = {
-            "timestamp": datetime.utcnow()
+            "timestamp": self._timestamp
         }
         result = self._db_manager.select_events(data)
         return EventBuilder.build_events(result)
@@ -45,8 +46,7 @@ class ScheduleEventsManager:
             message = self._build_message(event)
             self.s3_manager.create_sqs_schedule_notifications_event(message)
 
-    @staticmethod
-    def _build_message(event) -> dict:
+    def _build_message(self, event) -> dict:
         return {
             "event_id": {
                 "DataType": "String",
@@ -54,7 +54,7 @@ class ScheduleEventsManager:
             },
             "event_timestamp": {
                 "DataType": "String",
-                "StringValue": str(event.timestamp)
+                "StringValue": str(self._timestamp)
             }
         }
 

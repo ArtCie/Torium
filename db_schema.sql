@@ -14,8 +14,11 @@ CREATE TABLE users(
 	is_confirmed bool NOT NULL,
 	reminder_preferences reminder_preferences_type NULL,
 	cognito_user_id varchar(50) NOT NULL,
+	organization_id int4 NULL,
     CONSTRAINT users_PK PRIMARY KEY (id)
 );
+ALTER TABLE users ADD CONSTRAINT users_oID_FK FOREIGN KEY (organization_id) REFERENCES organizations(id);
+
 
 CREATE TABLE "groups"(
 	id serial4 NOT NULL,
@@ -55,6 +58,7 @@ CREATE TABLE events(
 	id serial4 NOT NULL,
 	is_budget bool NOT NULL,
 	budget float4 NULL,
+	name varchar(500) NULL,
 	description varchar(500) NULL,
 	group_id int4 NOT NULL,
 	event_timestamp timestamp NOT NULL,

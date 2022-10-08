@@ -5,8 +5,7 @@ class DBManager(DBManagerBase):
     def select_events(self, data):
         query = """    
             SELECT
-                id,
-                event_timestamp
+                id
             FROM
                 events
             WHERE
