@@ -40,6 +40,7 @@ class DBManager(DBManagerBase):
                 %(event_id)s,
                 %(event_timestamp)s,
                 %(timestamp)s
+            )
             RETURNING id;
         """
         return self.fetch_one(query, data)
