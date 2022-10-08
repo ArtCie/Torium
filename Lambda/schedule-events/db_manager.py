@@ -10,6 +10,8 @@ class DBManager(DBManagerBase):
                 events
             WHERE
                  event_timestamp::time - %(timestamp)s::time < '1 minute'::interval 
+            AND
+                 event_timestamp::time - %(timestamp)s::time >= '0 minute'::interval 
             AND 
                 (
                     (
