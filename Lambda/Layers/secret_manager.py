@@ -5,13 +5,20 @@ from json import loads
 class SecretManager:
     def __init__(self):
         self.client = boto3.client('secretsmanager')
-        self.SECRET_ID = 'toddy-secret'
+        self.TODDY_SECRET_ID = 'toddy-secret'
+        self.PINPOINT_APP_ID = 'pinpoint_app_id'
 
     def get_db_config(self):
         response = self.client.get_secret_value(
-            SecretId=self.SECRET_ID
+            SecretId=self.TODDY_SECRET_ID
         )['SecretString']
         return DatabaseConfig(**loads(response))
+
+    def get_pinpoint_app_id(self):
+        response = self.client.get_secret_value(
+            SecretId=self.PINPOINT_APP_ID
+        )['SecretString']
+        return response["app_id"]
 
 
 class DatabaseConfig:
