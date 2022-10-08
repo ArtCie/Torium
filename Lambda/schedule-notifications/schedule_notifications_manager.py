@@ -127,7 +127,7 @@ class ScheduleEventsManager:
         }
         return self._db_manager.get_event_details(data)
 
-    @build_response
+    @staticmethod
     def _build_message(event: dict, user: User):
         message = f"""
 Torium reminder!
