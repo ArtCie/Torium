@@ -1,11 +1,13 @@
 from secret_manager import SecretManager
 import logging
+from json import loads
 
-from schedule_events_manager import ScheduleEventsManager
+from schedule_notifications_manager import ScheduleEventsManager
 from db_manager import DBManager
 
 
 def lambda_handler(event: dict, context: dict) -> dict:
+    content = loads(event['Records'][0]['body'])
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.INFO)
     logger.info(f"{event=} {context=}")
@@ -15,5 +17,5 @@ def lambda_handler(event: dict, context: dict) -> dict:
     db_manager = DBManager(db_config)
     db_manager.connect()
 
-    schedule_events_manager = ScheduleEventsManager(db_manager)
-    return schedule_events_manager.process()
+    pre_signup_manager = ScheduleEventsManager(db_manager, content)
+    return pre_signup_manager.process()

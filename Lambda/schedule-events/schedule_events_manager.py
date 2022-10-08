@@ -51,6 +51,10 @@ class ScheduleEventsManager:
             "event_id": {
                 "DataType": "String",
                 "StringValue": str(event.id)
+            },
+            "event_timestamp": {
+                "DataType": "String",
+                "StringValue": str(event.timestamp)
             }
         }
 

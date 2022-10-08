@@ -161,3 +161,14 @@ class DBManager(DBManagerBase):
                 event_id = %(event_id)s
         """
         return self.fetch_one(query, data)
+
+    def select_event_timestamp(self, data):
+        query = """
+            SELECT
+                event_timestamp
+            FROM
+                events
+            WHERE
+                id = %(event_id)s
+        """
+        return self.fetch_one(query, data)
