@@ -1,7 +1,6 @@
 CREATE TYPE reminder_preferences_type AS ENUM ('SMS', 'PUSH', 'EMAIL');
 CREATE TYPE status_type AS ENUM('confirmed', 'pending', 'rejected');
 CREATE TYPE reminder_type AS ENUM('periodical', 'once');
-CREATE TYPE event_reminders_logs_status_type AS ENUM('delivered', 'failed', 'answered');
 CREATE TYPE member_status AS ENUM('standard', 'admin', 'moderator');
 
 
@@ -85,7 +84,7 @@ CREATE TABLE event_reminders_logs(
 	event_reminders_id int4 NOT NULL,
 	sent_timestamp timestamp NOT NULL,
 	user_id int4 NOT NULL,
-	status event_reminders_logs_status_type NOT NULL,
+	status varchar(50) NULL,
 	answer varchar(10) NULL,
 	"timestamp" timestamp NOT NULL,
 	CONSTRAINT event_reminders_logs_PK PRIMARY KEY(id)

@@ -43,7 +43,7 @@ class SendSmsManager:
     def _insert_event_reminders_logs(self):
         data = {
             "event_reminders_id": self._content.event_reminders_id,
-            "send_timestamp": self._content.sent_timestamp,
+            "sent_timestamp": self._content.sent_timestamp,
             "user_id": self._content.user_id,
             "timestamp": self._content.timestamp
         }

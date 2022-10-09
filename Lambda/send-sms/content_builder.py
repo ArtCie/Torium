@@ -4,7 +4,7 @@ from datetime import datetime
 class Content:
     def __init__(self, content: dict):
         self._user_id = content["user_id"]["StringValue"]
-        self._sent_timestamp = content["sent_timestamp"]["StringValue"]
+        self._sent_timestamp = content["event_timestamp"]["StringValue"]
         self._event_reminders_id = content["event_reminders_id"]["StringValue"]
         self._mobile_number = content["mobile_number"]["StringValue"]
         self._message = content["message"]["StringValue"]
