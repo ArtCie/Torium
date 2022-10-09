@@ -8,7 +8,7 @@ class DBManager(DBManagerBase):
                 u.email,
                 u.mobile_number,
                 u.device_arn,
-                u.user_id,
+                u.id as user_id,
                 u.reminder_preferences,
                 o.url
             FROM
@@ -16,7 +16,7 @@ class DBManager(DBManagerBase):
             INNER JOIN
                 users u
             ON 
-                u.id = events_users.user_id
+                u.id = eu.user_id
             LEFT JOIN
                 organizations o 
             ON 
@@ -32,13 +32,13 @@ class DBManager(DBManagerBase):
                 event_reminders
             (
                 event_id,
-                event_timestamp,
+                trigger_timestamp,
                 timestamp
             )
             VALUES
             (
                 %(event_id)s,
-                %(event_timestamp)s,
+                %(trigger_timestamp)s,
                 %(timestamp)s
             )
             RETURNING id;
@@ -50,7 +50,7 @@ class DBManager(DBManagerBase):
             SELECT
                 is_budget,
                 budget,
-                name
+                name,
                 description
             FROM
                 events
