@@ -18,7 +18,7 @@ class SecretManager:
         response = self.client.get_secret_value(
             SecretId=self.PINPOINT_APP_ID
         )['SecretString']
-        return response["app_id"]
+        return loads(response)["app_id"]
 
 
 class DatabaseConfig:

@@ -9,7 +9,7 @@ from user_builder import UserBuilder, User
 import json
 
 
-class ScheduleEventsManager:
+class ScheduleNotificationsManager:
     @log
     def __init__(self, db_manager: DBManager, content):
         self._db_manager = db_manager
@@ -52,7 +52,7 @@ class ScheduleEventsManager:
 
     def _insert_event_reminders(self) -> int:
         data = {
-            'event_timestamp': self._event_timestamp,
+            'trigger_timestamp': self._event_timestamp,
             'event_id': self._event_id,
             'timestamp': datetime.utcnow()
         }
