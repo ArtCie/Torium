@@ -5,6 +5,7 @@ class DBManager(DBManagerBase):
     def insert_event_reminders_logs(self, data):
         query = """
             INSERT INTO
+            event_reminders_logs
             (
                 event_reminders_id,
                 sent_timestamp,
