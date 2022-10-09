@@ -7,7 +7,7 @@ class Content:
         self._group_id = group_id
         self._name = name
         self._admin_id = admin_id
-        self._timestamp = datetime.now()
+        self._timestamp = datetime.utcnow()
 
     @property
     def group_id(self) -> int:

@@ -13,7 +13,7 @@ class Content:
         self._reminder_preferences = reminder_preferences
         self._cognito_user_id = cognito_user_id
         self._device_arn = device_arn
-        self._timestamp = datetime.now()
+        self._timestamp = datetime.utcnow()
 
     @property
     def user_id(self) -> int:

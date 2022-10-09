@@ -32,7 +32,7 @@ class PreSignUpManager:
     def _build_data(self):
         return {
             "email": self._content.email,
-            "timestamp": datetime.now(),
+            "timestamp": datetime.utcnow(),
             "is_confirmed": False,
             "cognito_user_id": self._content.cognito_user_id
         }
