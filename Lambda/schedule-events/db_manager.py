@@ -9,15 +9,15 @@ class DBManager(DBManagerBase):
             FROM
                 events
             WHERE
-                 event_timestamp::time - %(timestamp)s::time < '1 minute'::interval 
+                 %(timestamp)s::time- event_timestamp::time < '1 minute'::interval 
             AND
-                 event_timestamp::time - %(timestamp)s::time >= '0 minute'::interval 
+                 %(timestamp)s::time - event_timestamp::time >= '0 minute'::interval 
             AND 
                 (
                     (
                         reminder = 'once'
                     AND
-                        date_trunc('minute', event_timestamp - schedule_period) = date_trunc('minute', %(timestamp)s)
+                        date_trunc('minute', event_timestamp - schedule_period)::time = date_trunc('minute', %(timestamp)s)::time
                     )
                 OR 
                     (
