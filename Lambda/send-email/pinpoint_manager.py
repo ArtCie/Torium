@@ -31,8 +31,13 @@ class PinpointManager:
     @staticmethod
     def _format_html(message: str):
         first_row = message[:message.find('!') + 1]
-        last_row = message[message.find('!'):]
+        last_row = message[message.find('!') + 1:]
         return f"""
-            <h2>{first_row}</h2>
-            <p>{last_row}</p>
+        <html>
+            <head></head>
+            <body>
+                <h2>{first_row}</h2>
+                <p>{last_row}</p>
+            </body>
+        </html>
         """
