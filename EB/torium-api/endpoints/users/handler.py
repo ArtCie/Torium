@@ -3,6 +3,7 @@ from endpoints.users.manager import UsersManager
 
 from endpoints.users.patch.patch_user_preferences import PatchUserPreferences
 from endpoints.users.patch.patch_user_mobile import PatchUserMobile
+from endpoints.users.patch.patch_user_organization import PatchUserOrganization
 from endpoints.users.post.post_user_mobile import PostUserMobile
 from endpoints.users.get.get_user import GetUser
 
@@ -27,3 +28,7 @@ def post_mobile():
 @users_handler.route('/users/mobile', methods=['PATCH'])
 def patch_mobile():
     return users_manager.handle_request(PatchUserMobile, payload=request.json)
+
+@users_handler.route('/users/organization', methods=['PATCH'])
+def patch_organization():
+    return users_manager.handle_request(PatchUserOrganization, payload=request.json)
