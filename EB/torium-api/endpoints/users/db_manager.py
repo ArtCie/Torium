@@ -79,3 +79,14 @@ class DBManager(DBManagerBase):
             )
         """
         self.execute_query(query, data)
+
+    def update_user_organization(self, data):
+        query = """
+            UPDATE
+                users
+            SET
+                organization_id = %(organization_id)s
+            WHERE
+                id = %(user_id)s
+        """
+        self.execute_query(query, data)

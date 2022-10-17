@@ -1297,6 +1297,68 @@
             }
           }
         }
+    },
+          "/users/organization": {
+        "patch": {
+          "summary": "update user organization",
+          "operationId": "users",
+          "parameters": [
+            {
+              "name": "trm-user-id",
+              "in": "header",
+              "description": "ID of user",
+              "required": true,
+              "example": 1,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "organization_id": {
+                      "type": "string",
+                      "example": "5"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successfully updated organization",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "data": { },
+                      "status": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "integer",
+                            "example": 200
+                          },
+                          "message": {
+                            "type": "string",
+                            "example": "SUCCESS"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
     }
 },
   "security": [
