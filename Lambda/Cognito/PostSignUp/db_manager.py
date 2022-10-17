@@ -10,5 +10,7 @@ class DBManager(DBManagerBase):
                 is_confirmed = %(is_confirmed)s
             WHERE
                 cognito_user_id = %(cognito_user_id)s
+            RETURNING
+                id
         """
-        self.execute_query(query, data)
+        self.fetch_one(query, data)
