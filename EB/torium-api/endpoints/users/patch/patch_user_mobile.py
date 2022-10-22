@@ -26,6 +26,7 @@ class PatchUserMobile:
     def _update_user_mobile_number(self, mobile_number: str):
         data = {
             "mobile_number": mobile_number,
+            "reminder_preferences": "SMS",
             "user_id": self._user_id
         }
         self._db_manager.update_user_mobile_number(data)

@@ -50,7 +50,8 @@ class DBManager(DBManagerBase):
             UPDATE
                 users
             SET
-                mobile_number = %(mobile_number)s
+                mobile_number = %(mobile_number)s,
+                reminder_preferences = %(reminder_preferences)s
             WHERE
                 id = %(user_id)s
         """
