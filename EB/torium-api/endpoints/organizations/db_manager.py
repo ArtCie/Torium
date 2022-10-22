@@ -5,6 +5,7 @@ class DBManager(DBManagerBase):
     def get_organizations(self):
         query = """
             SELECT
+                id,
                 name,
                 url,
                 file_name
