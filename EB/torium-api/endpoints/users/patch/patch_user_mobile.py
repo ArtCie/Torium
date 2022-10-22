@@ -20,7 +20,7 @@ class PatchUserMobile:
         }
         result = self._db_manager.confirm_code(data)
         if not result:
-            return WrongCode("Given code is wrong!")
+            raise WrongCode("Given code is wrong!")
         return result[0]
 
     def _update_user_mobile_number(self, mobile_number: str):
