@@ -5,7 +5,8 @@ from typing import Optional
 class Content:
     def __init__(self, user_id: int, username: Optional[str], email: Optional[str],
                  mobile_number: Optional[str], reminder_preferences: Optional[str],
-                 cognito_user_id: Optional[str], device_arn: Optional[str], organization_id: Optional[str]):
+                 cognito_user_id: Optional[str], device_arn: Optional[str], organization_id: Optional[str],
+                 organization_name: Optional[str]):
         self._user_id = user_id
         self._username = username
         self._email = email
@@ -14,6 +15,7 @@ class Content:
         self._cognito_user_id = cognito_user_id
         self._device_arn = device_arn
         self._organization_id = organization_id
+        self._organization_name = organization_name
         self._timestamp = datetime.utcnow()
 
     @property
@@ -49,6 +51,10 @@ class Content:
         return self._organization_id
 
     @property
+    def organization_name(self) -> str:
+        return self._organization_name
+
+    @property
     def timestamp(self) -> datetime:
         return self._timestamp
 
@@ -57,4 +63,4 @@ class ContentConverter:
     @staticmethod
     def convert(content: dict) -> Content:
         return Content(content["user_id"], content.get("username"), content.get("email"), content.get("mobile_number"), content.get("reminder_preferences"),
-        content.get("cognito_user_id"), content.get("device_arn"), content.get("organization_id"))
+        content.get("cognito_user_id"), content.get("device_arn"), content.get("organization_id"), content.get("organization_name"))
