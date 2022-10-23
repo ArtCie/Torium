@@ -5,16 +5,21 @@ class DBManager(DBManagerBase):
     def get_user(self, data):
         query = """
             SELECT
-                id as user_id,
-                username,
-                email,
-                mobile_number,
-                reminder_preferences,
-                cognito_user_id,
-                device_arn,
-                organization_id
+                u.id as user_id,
+                u.username,
+                u.email,
+                u.mobile_number,
+                u.reminder_preferences,
+                u.cognito_user_id,
+                u.device_arn,
+                u.organization_id,
+                o.name as organization_name
             FROM
-                users
+                users u
+            INNER JOIN
+                organizations o 
+            ON 
+                u.organization_id = o.id
             WHERE
                 id = %(user_id)s
         """
