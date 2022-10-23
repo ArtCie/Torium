@@ -11,6 +11,7 @@ class OrganizationsBuilder:
     def build_organizations_response(self, organizations: List[Content]):
         return [
             {
+                "id": organization.id,
                 "name": organization.name,
                 "url": organization.url,
                 "logo_link": self.s3_manager.get_presigned_url(organization.file_name)

@@ -11,7 +11,8 @@ class DBManager(DBManagerBase):
                 mobile_number,
                 reminder_preferences,
                 cognito_user_id,
-                device_arn
+                device_arn,
+                organization_id
             FROM
                 users
             WHERE
@@ -50,7 +51,8 @@ class DBManager(DBManagerBase):
             UPDATE
                 users
             SET
-                mobile_number = %(mobile_number)s
+                mobile_number = %(mobile_number)s,
+                reminder_preferences = %(reminder_preferences)s
             WHERE
                 id = %(user_id)s
         """
