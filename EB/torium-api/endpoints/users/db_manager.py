@@ -11,7 +11,8 @@ class DBManager(DBManagerBase):
                 mobile_number,
                 reminder_preferences,
                 cognito_user_id,
-                device_arn
+                device_arn,
+                organization_id
             FROM
                 users
             WHERE
