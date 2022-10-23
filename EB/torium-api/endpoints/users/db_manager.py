@@ -21,7 +21,7 @@ class DBManager(DBManagerBase):
             ON 
                 u.organization_id = o.id
             WHERE
-                id = %(user_id)s
+                u.id = %(user_id)s
         """
         return self.fetch_one(query, data)
 
