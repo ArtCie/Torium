@@ -16,7 +16,7 @@ class DBManager(DBManagerBase):
                 o.name as organization_name
             FROM
                 users u
-            INNER JOIN
+            LEFT JOIN
                 organizations o 
             ON 
                 u.organization_id = o.id
