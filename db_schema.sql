@@ -130,3 +130,14 @@ INSERT INTO organizations(name, url, file_name) VALUES
 ('PKO', 'https://www.ipko.pl/', 'pko.png'),
 ('Pekao', 'https://www.pekao24.pl/logowanie', 'pekao.png'),
 ('ING', 'https://login.ingbank.pl/mojeing/app/#login', 'ing.png');
+
+
+CREATE TABLE events_comments(
+    id serial4 NOT NULL,
+    event_id int4 NOT NULL,
+    user_id int4 NOT NULL,
+    comment varchar(500) NOT NULL
+);
+
+ALTER TABLE events_comments add constraint events_comments_uID_FK foreign key(user_id) references users(id);
+ALTER TABLE events_comments add constraint events_comments_eID_FK foreign key(event_id) references events(id);
