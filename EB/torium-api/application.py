@@ -7,6 +7,7 @@ from endpoints.events.handler import events_handler
 from endpoints.groups.handler import groups_handler
 from endpoints.members.handler import groups_members_handler
 from endpoints.organizations.handler import organizations_handler
+from endpoints.events_comments.handler import events_comments_handler
 
 application = Flask(__name__)
 application.register_blueprint(users_handler)
@@ -14,6 +15,7 @@ application.register_blueprint(events_handler)
 application.register_blueprint(groups_handler)
 application.register_blueprint(groups_members_handler)
 application.register_blueprint(organizations_handler)
+application.register_blueprint(events_comments_handler)
 
 logger = logging.getLogger(__name__)
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')

@@ -9,7 +9,7 @@ class ObjectBuilder:
         return [
             {
                 protected_key[1:]: value for protected_key, value in object_.items()
-                if protected_key != '_timestamp'
+                if protected_key not in ['_timestamp', '_event_id']
             }
             for object_ in parsed_objects
         ]
