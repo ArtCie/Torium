@@ -1298,7 +1298,7 @@
           }
         }
     },
-          "/users/organization": {
+    "/users/organization": {
         "patch": {
           "summary": "update user organization",
           "operationId": "users",
@@ -1359,8 +1359,269 @@
             }
           }
         }
+    },
+    "/event/comment": {
+      "post": {
+        "summary": "Add event comment",
+        "operationId": "events_comment",
+        "parameters": [
+          {
+            "name": "trm-user-id",
+            "in": "header",
+            "description": "ID of user",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "event_id": {
+                    "type": "integer",
+                    "example": 8
+                  },
+                  "comment": {
+                    "type": "string",
+                    "example": "Great idea!"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Post event comment response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": { },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer",
+                          "example": 200
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "SUCCESS"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get event comment",
+        "operationId": "event_comment",
+        "parameters": [
+          {
+            "name": "trm-event-id",
+            "in": "header",
+            "description": "ID of user",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Event comments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "groups": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "description": "comment ID",
+                                  "type": "integer",
+                                  "example": 12
+                                },
+                                "event_id": {
+                                  "description": "ID of event",
+                                  "type": "integer",
+                                  "example": 8
+                                },
+                                "comment": {
+                                  "description": "comment",
+                                  "type": "string",
+                                  "example": "great idea!"
+                                }
+                              }
+                            }
+                          }
+                      }
+                    },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "SUCCESS"
+                        },
+                        "code": {
+                          "type": "integer",
+                          "example": 200
+                        }
+                      }
+                    }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+      "put": {
+        "summary": "update event comment",
+        "operationId": "event_comment",
+        "parameters": [
+          {
+            "name": "trm-user-id",
+            "in": "header",
+            "description": "ID of user",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "comment": {
+                    "type": "string",
+                    "example": "new comment"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Put event comment",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": { },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer",
+                          "example": 200
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "SUCCESS"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+      "delete": {
+        "summary": "delete event comment",
+        "operationId": "event comment",
+        "parameters": [
+          {
+            "name": "trm-user-id",
+            "in": "header",
+            "description": "ID of user",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": "12"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "delete event comment",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": { },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer",
+                          "example": 200
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "SUCCESS"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
     }
-},
+    }
+  },
   "security": [
     {
       "BasicAuth": [ ]
