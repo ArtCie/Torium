@@ -8,7 +8,7 @@ from content_builder import Content
 import json
 
 
-class SendSmsManager:
+class SendPushNotificationManager:
     @log
     def __init__(self, db_manager: DBManager, content):
         self._db_manager = db_manager
@@ -31,7 +31,7 @@ class SendSmsManager:
 
     def _handle_event(self):
         self._insert_event_reminders_logs()
-        self._sns_manager.create_send_sms_event(self._content.mobile_number, self._content.message)
+        self._sns_manager.publish(self._content)
 
     @staticmethod
     def _build_response(message: str, response_code: int) -> dict:
