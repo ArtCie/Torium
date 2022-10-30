@@ -28,3 +28,13 @@ class SqsManager:
                 'CreateSendEmailEvent'
             )
         )
+
+    def create_send_push_notification_event(self, message):
+        self.sqs.send_message(
+            QueueUrl='https://sqs.eu-central-1.amazonaws.com/007108578073/send-pushNotification-queue.fifo',
+            MessageAttributes=message,
+            MessageBody=json.dumps(message),
+            MessageGroupId=(
+                'CreateSendPushNotificationEvent'
+            )
+        )

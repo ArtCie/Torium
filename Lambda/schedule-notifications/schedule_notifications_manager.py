@@ -67,7 +67,20 @@ class ScheduleNotificationsManager:
             elif user.reminder_preferences == "EMAIL":
                 self._send_email_sqs(user, event_reminders_id, message)
             else:
-                pass  # TODO PUSH
+                self._send_push_sqs(user, event_reminders_id, event)
+
+    @staticmethod
+    def _build_message(event: dict, user: User):
+        message = f"""
+Torium reminder!
+{event["name"]}:
+Description: {event["description"]}
+
+        """
+        if user.url and event["is_budget"]:
+            message += f"""Budget for this event was set to {event['budget']}
+You can pay it here: {user.url}"""
+        return message
 
     @log
     def _send_sms_sqs(self, user: User, event_reminders_id: int, message: str):
@@ -127,15 +140,44 @@ class ScheduleNotificationsManager:
         }
         return self._db_manager.get_event_details(data)
 
-    @staticmethod
-    def _build_message(event: dict, user: User):
-        message = f"""
-Torium reminder!
-{event["name"]}:
-Description: {event["description"]}
+    def _send_push_sqs(self, user: User, event_reminders_id: int, event: dict):
+        message = {
+            "device_arn": {
+                "DataType": "String",
+                "StringValue": user.device_arn
+            },
+            "user_id": {
+                "DataType": "String",
+                "StringValue": str(user.user_id)
+            },
+            "event_reminders_id": {
+                "DataType": "String",
+                "StringValue": str(event_reminders_id)
+            },
+            "event_timestamp": {
+                "DataType": "String",
+                "StringValue": str(self._event_timestamp)
+            },
+            "title": {
+                "DataType": "String",
+                "StringValue": "Torium reminder!"
+            },
+            "body": {
+                "DataType": "String",
+                "StringValue": self._get_notification_body(event)
+            },
+            "forward_link": {
+                "DataType": "String",
+                "StringValue": user.url if user.url else "None"
+            }
+        }
+        self._sqs_manager.create_send_push_notification_event(message)
 
+    @staticmethod
+    def _get_notification_body(event: dict):
+        result = f"""{event["name"]}
+{event["description"]}
         """
-        if user.url and event["is_budget"]:
-            message += f"""Budget for this event was set to {event['budget']}
-You can pay it here: {user.url}"""
-        return message
+        if event["is_budget"]:
+            result += f"Budget for this event was set to {event['budget']} Pay your share now!"
+        return result
