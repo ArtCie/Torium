@@ -26,7 +26,7 @@ class ScheduleNotificationsManager:
         except Exception as e:
             log_exception(type(self).__name__, str(e))
             self._db_manager.rollback_changes()
-            return self._build_response(str(e), 500)
+            return self._build_response(str(e), 200)
         finally:
             self._db_manager.close_cursor()
             self._db_manager.close_connection()
