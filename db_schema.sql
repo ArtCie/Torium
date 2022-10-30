@@ -138,8 +138,22 @@ CREATE TABLE events_comments(
     event_id int4 NOT NULL,
     user_id int4 NOT NULL,
     comment varchar(500) NOT NULL,
-    timestamp timestamp NOT NULL
+    timestamp timestamp NOT NULL,
+    CONSTRAINT events_comments_PK PRIMARY KEY (id)
 );
 
 ALTER TABLE events_comments add constraint events_comments_uID_FK foreign key(user_id) references users(id);
 ALTER TABLE events_comments add constraint events_comments_eID_FK foreign key(event_id) references events(id);
+
+
+CREATE TABLE events_comments_logs(
+    id serial4 NOT NULL,
+    events_comments_id int4 NOT NULL,
+    user_id int4 NOT NULL,
+    sent_timestamp timestamp NOT NULL,
+    timestamp timestamp NOT NULL,
+    CONSTRAINT events_comments_logs_PK PRIMARY KEY (id)
+);
+
+ALTER TABLE events_comments_logs add constraint events_comments_logs_uID_FK foreign key(user_id) references users(id);
+ALTER TABLE events_comments_logs add constraint events_comments_logs_ecID_FK foreign key(events_comments_id) references events_comments(id);
