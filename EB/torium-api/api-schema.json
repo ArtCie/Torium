@@ -1360,6 +1360,68 @@
           }
         }
     },
+        "/users/device": {
+        "patch": {
+          "summary": "update device data",
+          "operationId": "users",
+          "parameters": [
+            {
+              "name": "trm-user-id",
+              "in": "header",
+              "description": "ID of user",
+              "required": true,
+              "example": 1,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "device_token": {
+                      "type": "string",
+                      "example": "dnkjfbnsdklafbsdaklsabkl"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successfully updated user device data",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "data": { },
+                      "status": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "integer",
+                            "example": 200
+                          },
+                          "message": {
+                            "type": "string",
+                            "example": "SUCCESS"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
     "/event/comment": {
       "post": {
         "summary": "Add event comment",
