@@ -19,8 +19,10 @@ class DBManager(DBManagerBase):
                 %(comment)s,
                 %(timestamp)s
             )
+            RETURNING
+            id
         """
-        return self.execute_query(query, data)
+        return self.fetch_one(query, data)
 
     def get_events_comments(self, data):
         query = """
