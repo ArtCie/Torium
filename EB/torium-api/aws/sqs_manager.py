@@ -18,3 +18,14 @@ class SqsManager:
                 'CreateScheduleNotificationsEvent'
             )
         )
+
+    def create_sqs_schedule_push_notification_comments_event(self, message):
+        self.sqs.send_message(
+            QueueUrl='https://sqs.eu-central-1.amazonaws.com/007108578073/schedule-push-notification-comments-queue'
+                     '.fifo',
+            MessageAttributes=message,
+            MessageBody=json.dumps(message),
+            MessageGroupId=(
+                'CreateSchedulePushNotificationCommentsEvent'
+            )
+        )
