@@ -12,6 +12,7 @@ class DBManager(DBManagerBase):
                 u.reminder_preferences,
                 u.cognito_user_id,
                 u.device_arn,
+                u.device_token,
                 u.organization_id,
                 o.name as organization_name
             FROM
@@ -93,6 +94,41 @@ class DBManager(DBManagerBase):
                 users
             SET
                 organization_id = %(organization_id)s
+            WHERE
+                id = %(user_id)s
+        """
+        self.execute_query(query, data)
+
+    def select_current_device_data(self, data):
+        query = """
+            SELECT
+                device_arn,
+                device_token
+            FROM
+                users
+            WHERE
+                id = %(user_id)s
+        """
+        return self.fetch_one(query, data)
+
+    def update_device_data(self, data):
+        query = """
+            UPDATE
+                users
+            SET
+                device_arn = %(device_arn)s,
+                device_token = %(device_token)s
+            WHERE
+                id = %(user_id)s
+        """
+        self.execute_query(query, data)
+
+    def update_device_token(self, data):
+        query = """
+            UPDATE
+                users
+            SET
+                device_token = %(device_token)s
             WHERE
                 id = %(user_id)s
         """

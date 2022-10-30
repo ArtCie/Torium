@@ -14,6 +14,7 @@ CREATE TABLE users(
 	reminder_preferences reminder_preferences_type NULL,
 	cognito_user_id varchar(50) NOT NULL,
 	organization_id int4 NULL,
+	device_token varchar(200) NULL,
     CONSTRAINT users_PK PRIMARY KEY (id)
 );
 ALTER TABLE users ADD CONSTRAINT users_oID_FK FOREIGN KEY (organization_id) REFERENCES organizations(id);
