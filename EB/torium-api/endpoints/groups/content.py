@@ -42,4 +42,4 @@ class ContentConverter:
 
     @staticmethod
     def convert(content: dict) -> Content:
-        return Content(content["id"], content["name"], content["admin_id"], content["status"])
+        return Content(content["id"], content["name"], content["admin_id"], status=content.get("status", "admin"))
