@@ -67,7 +67,8 @@ class DBManager(DBManagerBase):
             SELECT
                 g.id,
                 g.name,
-                g.admin_id
+                g.admin_id,
+                ug.status
             FROM
                 groups g
             LEFT JOIN
