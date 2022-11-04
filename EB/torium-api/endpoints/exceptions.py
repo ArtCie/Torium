@@ -8,3 +8,7 @@ class WrongCode(Exception):
 
 class LatencyError(Exception):
     pass
+
+
+class WrongEmail(Exception):
+    pass

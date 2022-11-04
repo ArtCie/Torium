@@ -133,3 +133,14 @@ class DBManager(DBManagerBase):
                 id = %(user_id)s
         """
         self.execute_query(query, data)
+
+    def get_user_id_by_email(self, data):
+        query = """
+            SELECT
+                id
+            FROM
+                users
+            WHERE
+                email = %(email)s
+        """
+        return self.fetch_one(query, data)
