@@ -55,6 +55,11 @@
                                   "type": "string",
                                   "example": "Eagle Bielik"
                                 },
+                                "description": {
+                                  "description": "group description",
+                                  "type": "string",
+                                  "example": "Eagle Bielik 2"
+                                },
                                 "admin_id": {
                                   "description": "group admin id",
                                   "type": "integer",
@@ -110,6 +115,10 @@
                   "name": {
                     "type": "string",
                     "example": "group_name"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "group description"
                   }
                 }
               }
@@ -124,7 +133,15 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": { },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "user_id": {
+                          "type": "integer",
+                          "example": 8
+                        }
+                      }
+                    },
                     "status": {
                       "type": "object",
                       "properties": {
@@ -174,6 +191,10 @@
                   "name": {
                     "type": "string",
                     "example": "group_name"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "group description"
                   },
                   "admin_id": {
                     "type": "integer",
