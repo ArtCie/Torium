@@ -7,6 +7,7 @@ from endpoints.users.patch.patch_user_organization import PatchUserOrganization
 from endpoints.users.device.patch.patch_device import PatchDevice
 from endpoints.users.post.post_user_mobile import PostUserMobile
 from endpoints.users.get.get_user import GetUser
+from endpoints.users.get.get_user_id_by_email import GetUserIdByEmail
 
 users_handler = Blueprint('users', __name__)
 users_manager = UsersManager()
@@ -40,3 +41,8 @@ def patch_organization():
 @users_handler.route('/users/device', methods=['PATCH'])
 def patch_device():
     return users_manager.handle_request(PatchDevice, payload=request.json)
+
+
+@users_handler.route('/users/email', methods=['GET'])
+def get_user_by_email():
+    return users_manager.handle_request(GetUserIdByEmail, payload={})

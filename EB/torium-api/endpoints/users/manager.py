@@ -1,5 +1,6 @@
 from utils.logger import log_exception, log
 from database.secret_manager import SecretManager
+from endpoints.exceptions import WrongEmail
 
 from endpoints.endpoint_manager import EndpointManager
 from endpoints.users.db_manager import DBManager
@@ -14,6 +15,10 @@ class UsersManager(EndpointManager):
             result = self.process_request(endpoint_class, database, **kwargs)
             database.commit_changes()
             return self._build_response(200, "Success", result)
+        except WrongEmail as e:
+            log_exception(type(self).__name__, str(e))
+            database.rollback_changes()
+            return self._build_response(409, "Wrong email!", None)
         except Exception as e:
             log_exception(type(self).__name__, str(e))
             database.rollback_changes()

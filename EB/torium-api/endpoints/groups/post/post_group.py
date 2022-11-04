@@ -18,6 +18,7 @@ class PostGroup:
     def _post_group(self):
         data = {
             "name": self._content.name,
+            "description": self._content.description,
             "admin_id": self._content.admin_id,
             "timestamp": self._content.timestamp
         }

@@ -1114,6 +1114,60 @@
       }
     }
     },
+    "/users/email": {
+      "get": {
+        "summary": "Get user by email",
+        "operationId": "user_email",
+        "parameters": [
+          {
+            "name": "trm-email",
+            "in": "header",
+            "description": "email of user",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "properties": {
+                          "id": {
+                            "description": "user ID",
+                            "type": "integer",
+                            "example": 12
+                          }
+                        }
+                     },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer",
+                          "example": 200
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "SUCCESS"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    }
+    },
     "/users/preferences": {
         "patch": {
           "summary": "update reminder preferences",
