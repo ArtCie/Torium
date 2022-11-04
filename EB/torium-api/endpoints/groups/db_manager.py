@@ -55,9 +55,9 @@ class DBManager(DBManagerBase):
         query = """
             INSERT INTO
                 groups
-            (name, admin_id, timestamp)
+            (name, admin_id, description, timestamp)
             VALUES
-            (%(name)s, %(admin_id)s, %(timestamp)s)
+            (%(name)s, %(admin_id)s, %(description)s, %(timestamp)s)
             RETURNING id;
         """
         return self.fetch_one(query, data)
@@ -67,6 +67,7 @@ class DBManager(DBManagerBase):
             SELECT
                 g.id,
                 g.name,
+                g.description,
                 g.admin_id,
                 ug.status
             FROM
@@ -88,6 +89,7 @@ class DBManager(DBManagerBase):
                 groups
             SET
                 name = %(name)s,
+                description = %(description)s,
                 admin_id = %(admin_id)s
             WHERE
                 id = %(id)s

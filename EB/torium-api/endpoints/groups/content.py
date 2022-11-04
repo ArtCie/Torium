@@ -3,11 +3,12 @@ from typing import Optional
 
 
 class Content:
-    def __init__(self, group_id: Optional[int], name: Optional[str], admin_id: int, status: Optional[str]):
+    def __init__(self, group_id: Optional[int], name: Optional[str], admin_id: int, description: Optional[str], status: Optional[str]):
         self._group_id = group_id
         self._name = name
         self._admin_id = admin_id
         self._status = status
+        self._description = description
         self._timestamp = datetime.utcnow()
 
     @property
@@ -27,6 +28,10 @@ class Content:
         return self._status
 
     @property
+    def description(self) -> str:
+        return self._description
+
+    @property
     def timestamp(self) -> datetime:
         return self._timestamp
 
@@ -34,13 +39,13 @@ class Content:
 class ContentConverter:
     @staticmethod
     def convert_post(content: dict) -> Content:
-        return Content(None, content["name"], content["admin_id"], None)
+        return Content(None, content["name"], content["admin_id"], content["description"], None)
 
     @staticmethod
     def convert_delete(content: dict) -> Content:
-        return Content(content["id"], None, content["admin_id"], None)
+        return Content(content["id"], None, content["admin_id"], None, None)
 
     @staticmethod
     def convert(content: dict) -> Content:
-        return Content(content["id"], content["name"], content["admin_id"],
+        return Content(content["id"], content["name"], content["admin_id"], content["description"],
                        status="admin" if not content["status"] else content["status"])

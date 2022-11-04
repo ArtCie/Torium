@@ -25,6 +25,7 @@ class PutGroup:
         data = {
             "id": self.content.group_id,
             "name": self.content.name,
+            "description": self.content.description,
             "admin_id": self.content.admin_id
         }
         self._db_manager.update_group(data)

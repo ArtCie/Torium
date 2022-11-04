@@ -23,6 +23,7 @@ ALTER TABLE users ADD CONSTRAINT users_oID_FK FOREIGN KEY (organization_id) REFE
 CREATE TABLE "groups"(
 	id serial4 NOT NULL,
 	name varchar(50) NOT NULL,
+	description varchar(200) NOT NULL,
 	admin_id int4 NOT NULL,
 	"timestamp" timestamp NOT NULL,
 	CONSTRAINT groups_PK PRIMARY KEY(id)
