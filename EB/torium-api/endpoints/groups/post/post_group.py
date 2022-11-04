@@ -11,6 +11,9 @@ class PostGroup:
     def process_request(self):
         group_id = self._post_group()
         self._insert_users_groups(group_id)
+        return {
+            "group_id": group_id
+        }
 
     def _post_group(self):
         data = {
