@@ -10,7 +10,7 @@ class DBManager(DBManagerBase):
             VALUES
                 (%(group_id)s, %(user_id)s, %(timestamp)s, %(status)s)
         """
-        self.execute_query(query, data)
+        return self.fetch_one(query, data)
 
     def delete_invitation(self, data):
         query = """

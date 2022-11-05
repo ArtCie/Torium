@@ -1,5 +1,5 @@
 CREATE TYPE reminder_preferences_type AS ENUM ('SMS', 'PUSH', 'EMAIL');
-CREATE TYPE status_type AS ENUM('confirmed', 'pending', 'rejected');
+CREATE TYPE status_type AS ENUM('confirmed', 'pending', 'rejected', 'sent');
 CREATE TYPE reminder_type AS ENUM('periodical', 'once');
 CREATE TYPE member_status AS ENUM('standard', 'admin', 'moderator');
 
