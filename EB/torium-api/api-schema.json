@@ -1757,7 +1757,135 @@
           }
         }
     }
+    },
+    "/groups/invitation/count": {
+      "get": {
+        "summary": "Get user invitation count",
+        "operationId": "user_invitation_count",
+        "parameters": [
+          {
+            "name": "trm-user-id",
+            "in": "header",
+            "description": "ID of user",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User invitation count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                        "count": {
+                          "description": "user invitation count",
+                          "type": "integer",
+                          "example": 2
+                        }
+                      }
+                    },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "SUCCESS"
+                        },
+                        "code": {
+                          "type": "integer",
+                          "example": 200
+                        }
+                      }
+                    }
+                }
+              }
+            }
+          }
+        }
+      }
     }
+  },
+    "/groups/invitation": {
+      "get": {
+        "summary": "Get user invitations",
+        "operationId": "user_invitations",
+        "parameters": [
+          {
+            "name": "trm-user-id",
+            "in": "header",
+            "description": "ID of user",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User invitation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "groups": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "group_id": {
+                                  "description": "id of group",
+                                  "type": "integer",
+                                  "example": 12
+                                },
+                                "email": {
+                                  "description": "admin email",
+                                  "type": "string",
+                                  "example": "aaa@gmail.com"
+                                },
+                                "name": {
+                                  "description": "group name",
+                                  "type": "string",
+                                  "example": "group123"
+                                }
+                              }
+                            }
+                          }
+                      }
+                    },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "SUCCESS"
+                        },
+                        "code": {
+                          "type": "integer",
+                          "example": 200
+                        }
+                      }
+                    }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
   },
   "security": [
     {

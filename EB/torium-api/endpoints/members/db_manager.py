@@ -9,6 +9,7 @@ class DBManager(DBManagerBase):
                 (group_id, user_to, timestamp, status)
             VALUES
                 (%(group_id)s, %(user_id)s, %(timestamp)s, %(status)s)
+            RETURNING id
         """
         return self.fetch_one(query, data)
 
