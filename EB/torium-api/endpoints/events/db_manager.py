@@ -14,7 +14,8 @@ class DBManager(DBManagerBase):
                 event_timestamp,
                 reminder,
                 schedule_period,
-                timestamp
+                timestamp,
+                name
             )
             VALUES
             (
@@ -25,7 +26,8 @@ class DBManager(DBManagerBase):
                 %(event_timestamp)s,
                 %(reminder)s,
                 %(schedule_period)s,
-                %(timestamp)s
+                %(timestamp)s,
+                %(name)s
             )
             RETURNING id;
         """
@@ -61,7 +63,8 @@ class DBManager(DBManagerBase):
                 event_timestamp = %(event_timestamp)s,
                 reminder = %(reminder)s,
                 schedule_period = %(schedule_period)s,
-                updated_timestamp = %(timestamp)s
+                updated_timestamp = %(timestamp)s,
+                name = %(name)s
             WHERE 
                 id = %(id)s;
         """
@@ -137,6 +140,7 @@ class DBManager(DBManagerBase):
                 e.event_timestamp,
                 e.reminder,
                 e.schedule_period,
+                e.name,
                 ARRAY(SELECT user_id from events_users WHERE event_id = e.id) as users
             FROM
                 events e 

@@ -751,6 +751,10 @@
                       "type": "integer",
                       "example": 1
                     }
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "event name"
                   }
                 }
               }
@@ -864,6 +868,11 @@
                                     "type": "integer",
                                     "example": 1
                                   }
+                                },
+                                "name": {
+                                  "description": "event name",
+                                  "type": "string",
+                                  "example": "test name"
                                 }
                               }
                             }
@@ -946,6 +955,10 @@
                       "type": "integer",
                       "example": 1
                     }
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "event name"
                   }
                 }
               }
