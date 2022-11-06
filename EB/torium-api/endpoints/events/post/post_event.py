@@ -20,6 +20,7 @@ class PostEvent:
             "event_timestamp": self._content.event_timestamp,
             "reminder": self._content.reminder,
             "schedule_period": self._content.schedule_period,
+            "name": self._content.name,
             "timestamp": self._content.timestamp
         }
         return self._db_manager.post_event(data)[0]

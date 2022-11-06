@@ -34,7 +34,8 @@ class PutEvent:
             "event_timestamp": self._content.event_timestamp,
             "reminder": self._content.reminder,
             "schedule_period": self._content.schedule_period,
-            "timestamp": self._content.timestamp
+            "timestamp": self._content.timestamp,
+            "name": self._content.name
         }
         return self._db_manager.update_event(data)
 

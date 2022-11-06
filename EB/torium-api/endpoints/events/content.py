@@ -5,7 +5,8 @@ from typing import Optional
 class Content:
     def __init__(self, id: int, is_budget: bool, budget: float,
                  description: str, group_id: int, event_timestamp: str,
-                 reminder: str, schedule_period: str, users: Optional[list]):
+                 reminder: str, schedule_period: str, users: Optional[list],
+                 name: str):
         self._id = id
         self._is_budget = is_budget
         self._budget = budget
@@ -16,6 +17,7 @@ class Content:
         self._schedule_period = schedule_period
         self._timestamp = datetime.utcnow()
         self._users = users
+        self._name = name
 
     @property
     def id(self) -> int:
@@ -57,10 +59,14 @@ class Content:
     def users(self) -> list:
         return self._users
 
+    @property
+    def name(self) -> str:
+        return self._name
+
 
 class ContentConverter:
     @staticmethod
     def convert(content: dict) -> Content:
         return Content(content.get("id"), content["is_budget"], content["budget"],
                        content["description"], content["group_id"], str(content["event_timestamp"]),
-                       content["reminder"], str(content["schedule_period"]), content["users"])
+                       content["reminder"], str(content["schedule_period"]), content["users"], content["name"])
