@@ -146,6 +146,9 @@ class DBManager(DBManagerBase):
                 e.id = eu.event_id
             WHERE
                 eu.user_id = %(user_id)s
+            ORDER BY
+                e.event_timestamp
+            ASC
         """
         return self.fetch_all(query, data)
 
