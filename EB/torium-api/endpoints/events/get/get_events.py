@@ -17,8 +17,7 @@ class GetEvents:
     def _get_events(self):
         if self._group_id:
             return self._get_user_group_events()
-        else:
-            return self._get_user_events()
+        return self._get_user_events()
 
     def _get_user_group_events(self) -> list:
         data = {
