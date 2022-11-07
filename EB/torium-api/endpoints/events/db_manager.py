@@ -129,7 +129,7 @@ class DBManager(DBManagerBase):
         """
         self.execute_query(query, data)
 
-    def get_events(self, data):
+    def get_user_events(self, data):
         query = """
             SELECT
                 e.id,
@@ -150,6 +150,39 @@ class DBManager(DBManagerBase):
                 e.id = eu.event_id
             WHERE
                 eu.user_id = %(user_id)s
+            ORDER BY
+                e.event_timestamp
+            ASC
+        """
+        return self.fetch_all(query, data)
+
+    def get_user_group_events(self, data):
+        query = """
+            SELECT
+                e.id,
+                e.budget,
+                e.is_budget,
+                e.description,
+                e.group_id,
+                e.event_timestamp,
+                e.reminder,
+                e.schedule_period,
+                e.name,
+                ARRAY(SELECT user_id from events_users WHERE event_id = e.id) as users
+            FROM
+                events e 
+            INNER JOIN
+                events_users eu
+            ON 
+                e.id = eu.event_id
+            INNER JOIN
+                users_groups ug
+            ON 
+                eu.user_id = ug.user_id
+            WHERE
+                eu.user_id = %(user_id)s
+            AND
+                ug.group_id = %(group_id)s
             ORDER BY
                 e.event_timestamp
             ASC
