@@ -23,12 +23,13 @@ class GetEvents:
     def _get_user_group_events(self) -> list:
         data = {
             "user_id": self._user_id,
+            "group_id": self._group_id
         }
         return self._db_manager.get_user_group_events(data)
 
     def _get_user_events(self):
         data = {
-            "user_id": self._user_id,
+            "user_id": self._user_id
         }
         return self._db_manager.get_user_events(data)
 
