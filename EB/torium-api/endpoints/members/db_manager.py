@@ -125,3 +125,22 @@ class DBManager(DBManagerBase):
                 user_id = %(user_id)s
         """
         self.execute_query(query, data)
+
+    def is_invitation_sent(self, data):
+        query = """
+            SELECT
+                1
+            FROM
+                group_invitation_logs
+            WHERE
+                user_to = %(user_id)s
+            AND
+                group_id = %(group_id)s
+            AND
+                (
+                    status = %(status_sent)s
+                OR
+                    status = %(status_pending)s
+                )
+        """
+        return self.fetch_one(query, data)
