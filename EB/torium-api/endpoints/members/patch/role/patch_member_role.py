@@ -21,6 +21,8 @@ class PatchMemberRole:
             self._valid_admin_permissions()
         elif self._content.status == "moderator":
             self._valid_moderator_permissions()
+        else:
+            raise AccessDenied("You shouldn't be here...")
 
     def _valid_admin_permissions(self):
         data = {
