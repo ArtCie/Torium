@@ -873,6 +873,11 @@
                                   "description": "event name",
                                   "type": "string",
                                   "example": "test name"
+                                },
+                                "group_name": {
+                                  "description": "group name",
+                                  "type": "string",
+                                  "example": "test group name"
                                 }
                               }
                             }

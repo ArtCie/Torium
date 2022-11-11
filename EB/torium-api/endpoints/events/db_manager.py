@@ -141,6 +141,7 @@ class DBManager(DBManagerBase):
                 e.reminder,
                 e.schedule_period,
                 e.name,
+                g.name as group_name,
                 ARRAY(SELECT user_id from events_users WHERE event_id = e.id) as users
             FROM
                 events e 
@@ -148,6 +149,10 @@ class DBManager(DBManagerBase):
                 events_users eu
             ON 
                 e.id = eu.event_id
+            INNER JOIN
+                groups g 
+            ON
+                g.id = e.group_id
             WHERE
                 eu.user_id = %(user_id)s
             ORDER BY
@@ -168,6 +173,7 @@ class DBManager(DBManagerBase):
                 e.reminder,
                 e.schedule_period,
                 e.name,
+                g.name as group_name,
                 ARRAY(SELECT user_id from events_users WHERE event_id = e.id) as users
             FROM
                 events e 
@@ -175,6 +181,10 @@ class DBManager(DBManagerBase):
                 events_users eu
             ON 
                 e.id = eu.event_id
+            INNER JOIN
+                groups g 
+            ON
+                g.id = e.group_id
             WHERE
                 eu.user_id = %(user_id)s
             AND
