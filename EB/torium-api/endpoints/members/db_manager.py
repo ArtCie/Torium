@@ -94,6 +94,25 @@ class DBManager(DBManagerBase):
         """
         return self.fetch_one(query, data)
 
+    def valid_moderator_permissions(self, data):
+        query = """
+            SELECT 
+                1
+            FROM
+                users_groups
+            WHERE
+                group_id = %(group_id)s
+            AND 
+                user_id = %(admin_id)s
+            AND
+                ( 
+                    status = %(status_moderator)s
+                OR
+                    status = %(status_admin)s
+                )
+        """
+        return self.fetch_one(query, data)
+
     def update_users_group_status(self, data):
         query = """
             UPDATE
