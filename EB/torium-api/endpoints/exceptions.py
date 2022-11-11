@@ -12,3 +12,7 @@ class LatencyError(Exception):
 
 class WrongEmail(Exception):
     pass
+
+
+class InvitationAlreadySent(Exception):
+    pass
