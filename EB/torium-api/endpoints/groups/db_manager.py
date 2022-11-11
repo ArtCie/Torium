@@ -43,7 +43,7 @@ class DBManager(DBManagerBase):
             SELECT
                 1
             FROM
-                user_groups
+                users_groups
             WHERE
                 group_id = %(group_id)s
             AND
