@@ -43,11 +43,13 @@ class DBManager(DBManagerBase):
             SELECT
                 1
             FROM
-                groups
+                user_groups
             WHERE
-                id = %(group_id)s
+                group_id = %(group_id)s
             AND
-                admin_id = %(admin_id)s
+                user_id = %(user_id)s
+            AND
+                status = %(status)s
         """
         return self.fetch_one(query, data)
 

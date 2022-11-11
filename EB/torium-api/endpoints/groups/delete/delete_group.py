@@ -7,6 +7,7 @@ class DeleteGroup:
     def __init__(self, kwargs: dict, db_manager: DBManager):
         self._db_manager = db_manager
         self.content = ContentConverter.convert_delete(kwargs)
+        self.STATUS = "admin"
 
     def process_request(self):
         self._valid_permission()
@@ -15,8 +16,9 @@ class DeleteGroup:
 
     def _valid_permission(self):
         data = {
-            "admin_id": self.content.admin_id,
-            "group_id": self.content.group_id
+            "user_id": self.content.admin_id,
+            "group_id": self.content.group_id,
+            "status": self.STATUS
         }
         if not self._db_manager.valid_permission(data):
             raise AccessDenied("Access Denied!")

@@ -8,6 +8,7 @@ class PutGroup:
         self._db_manager = db_manager
         self._admin_id = kwargs["admin_id"]
         self.content = ContentConverter.convert(kwargs)
+        self.STATUS = "admin"
 
     def process_request(self):
         self._valid_permission()
@@ -15,8 +16,9 @@ class PutGroup:
 
     def _valid_permission(self):
         data = {
-            "admin_id": self._admin_id,
-            "group_id": self.content.group_id
+            "user_id": self._admin_id,
+            "group_id": self.content.group_id,
+            "status": self.STATUS
         }
         if not self._db_manager.valid_permission(data):
             raise AccessDenied("Access Denied!")
