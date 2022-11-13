@@ -75,4 +75,4 @@ class ContentConverter:
         return Content(content.get("id"), content["is_budget"], content["budget"],
                        content["description"], content["group_id"], str(content["event_timestamp"]),
                        content["reminder"], str(content["schedule_period"]), content["users"],
-                       content["name"], content["group_name"])
+                       content["name"], content.get("group_name"))
