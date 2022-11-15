@@ -74,5 +74,5 @@ class ContentConverter:
     def convert(content: dict) -> Content:
         return Content(content.get("id"), content["is_budget"], content["budget"],
                        content["description"], content["group_id"], str(content["event_timestamp"]),
-                       content["reminder"], str(content["schedule_period"]), content["users"],
+                       content["reminder"], str(content["schedule_period"]), content.get("users", []),
                        content["name"], content.get("group_name"))
