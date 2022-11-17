@@ -29,7 +29,8 @@ class DBManager(DBManagerBase):
             SELECT
                 id,
                 user_id,
-                comment
+                comment,
+                timestamp as event_timestamp
             FROM
                 events_comments
             WHERE

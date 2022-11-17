@@ -17,7 +17,7 @@ class Content:
         self._device_token = device_token
         self._organization_id = organization_id
         self._organization_name = organization_name
-        self._timestamp = datetime.utcnow()
+        self._timestamp = datetime.now()
 
     @property
     def user_id(self) -> int:

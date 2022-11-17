@@ -15,7 +15,7 @@ class Content:
         self._event_timestamp = event_timestamp
         self._reminder = reminder
         self._schedule_period = schedule_period
-        self._timestamp = datetime.utcnow()
+        self._timestamp = datetime.now()
         self._users = users
         self._name = name
         self._group_name = group_name

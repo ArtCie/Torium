@@ -8,7 +8,7 @@ class Content:
         self._event_reminders_id = content["event_reminders_id"]["StringValue"]
         self._mobile_number = content["mobile_number"]["StringValue"]
         self._message = content["message"]["StringValue"]
-        self._timestamp = datetime.utcnow()
+        self._timestamp = datetime.now()
 
     @property
     def user_id(self) -> int:
