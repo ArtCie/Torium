@@ -14,7 +14,7 @@ class PostEvent:
     def _post_event(self):
         data = {
             "is_budget": self._content.is_budget,
-            "budget": self._content.budget,
+            "budget": self._content.budget if self._content.is_budget else None,
             "description": self._content.description,
             "group_id": self._content.group_id,
             "event_timestamp": self._content.event_timestamp,
