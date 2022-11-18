@@ -9,15 +9,6 @@ class Content:
         self._comment = comment
         self._event_timestamp = self._get_relative_timestamp(event_timestamp) if event_timestamp else None
         self._timestamp = datetime.datetime.now()
-        self._INTERVALS = (
-            ('years', 217728000),
-            ('months', 18144000),
-            ('weeks', 604800),
-            ('days', 86400),
-            ('hours', 3600),
-            ('minutes', 60),
-            ('seconds', 1),
-        )
 
     @property
     def id(self) -> int:
@@ -39,9 +30,22 @@ class Content:
     def timestamp(self) -> datetime:
         return self._timestamp
 
-    def _get_relative_timestamp(self, event_timestamp):
+    @property
+    def event_timestamp(self) -> str:
+        return self._event_timestamp
+
+    def _get_relative_timestamp(self, event_timestamp: datetime) -> str:
+        INTERVALS = (
+            ('years', 217728000),
+            ('months', 18144000),
+            ('weeks', 604800),
+            ('days', 86400),
+            ('hours', 3600),
+            ('minutes', 60),
+            ('seconds', 1),
+        )
         seconds = event_timestamp.timestamp() - self._timestamp.timestamp()
-        for name, count in self._INTERVALS:
+        for name, count in INTERVALS:
             value = seconds // count
             if value:
                 if value == 1:
