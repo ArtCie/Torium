@@ -36,13 +36,13 @@ class Content:
 
     def _get_relative_timestamp(self, event_timestamp: datetime) -> str:
         INTERVALS = (
-            ('years', 217728000),
-            ('months', 18144000),
-            ('weeks', 604800),
-            ('days', 86400),
-            ('hours', 3600),
-            ('minutes', 60),
-            ('seconds', 1),
+            ('y', 217728000),
+            ('mon', 18144000),
+            ('w', 604800),
+            ('d', 86400),
+            ('h', 3600),
+            ('min', 60),
+            ('s', 1),
         )
         seconds = self._timestamp.timestamp() - event_timestamp.timestamp()
         for name, count in INTERVALS:
