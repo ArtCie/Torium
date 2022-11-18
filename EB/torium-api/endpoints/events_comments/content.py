@@ -7,8 +7,8 @@ class Content:
         self._event_id = event_id
         self._user_id = user_id
         self._comment = comment
-        self._event_timestamp = self._get_relative_timestamp(event_timestamp) if event_timestamp else None
         self._timestamp = datetime.datetime.now()
+        self._event_timestamp = self._get_relative_timestamp(event_timestamp) if event_timestamp else None
 
     @property
     def id(self) -> int:
