@@ -141,7 +141,8 @@ class DBManager(DBManagerBase):
                 e.reminder,
                 e.schedule_period,
                 e.name,
-                g.name as group_name
+                g.name as group_name,
+                ug.status
             FROM
                 events e 
             INNER JOIN
@@ -152,6 +153,10 @@ class DBManager(DBManagerBase):
                 groups g 
             ON
                 g.id = e.group_id
+            INNER JOIN
+                users_groups ug
+            ON
+                ug.user_id = eu.user_id
             WHERE
                 eu.user_id = %(user_id)s
             ORDER BY

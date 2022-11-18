@@ -6,7 +6,7 @@ class Content:
     def __init__(self, id: int, is_budget: bool, budget: float,
                  description: str, group_id: int, event_timestamp: str,
                  reminder: str, schedule_period: str, users: Optional[list],
-                 name: str, group_name: str):
+                 name: str, group_name: str, status: str):
         self._id = id
         self._is_budget = is_budget
         self._budget = budget
@@ -19,6 +19,7 @@ class Content:
         self._users = users
         self._name = name
         self._group_name = group_name
+        self._status = status
 
     @property
     def id(self) -> int:
@@ -68,6 +69,10 @@ class Content:
     def group_name(self) -> str:
         return self._group_name
 
+    @property
+    def status(self) -> str:
+        return self._status
+
 
 class ContentConverter:
     @staticmethod
@@ -75,4 +80,4 @@ class ContentConverter:
         return Content(content.get("id"), content["is_budget"], content["budget"],
                        content["description"], content["group_id"], str(content["event_timestamp"]),
                        content["reminder"], str(content["schedule_period"]), content.get("users", []),
-                       content["name"], content.get("group_name"))
+                       content["name"], content.get("group_name"), content.get("status"))
