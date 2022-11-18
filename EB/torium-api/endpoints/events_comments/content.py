@@ -48,7 +48,7 @@ class Content:
         for name, count in INTERVALS:
             value = seconds // count
             if value:
-                return f"{int(value)} {name} ago"
+                return f"{int(value)}{name} ago"
 
 
 class ContentConverter:
