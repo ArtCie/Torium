@@ -15,7 +15,7 @@ class Content:
         self._event_timestamp = event_timestamp
         self._reminder = reminder
         self._schedule_period = schedule_period
-        self._timestamp = datetime.utcnow()
+        self._timestamp = datetime.now()
         self._users = users
         self._name = name
         self._group_name = group_name
@@ -74,5 +74,5 @@ class ContentConverter:
     def convert(content: dict) -> Content:
         return Content(content.get("id"), content["is_budget"], content["budget"],
                        content["description"], content["group_id"], str(content["event_timestamp"]),
-                       content["reminder"], str(content["schedule_period"]), content["users"],
+                       content["reminder"], str(content["schedule_period"]), content.get("users", []),
                        content["name"], content.get("group_name"))

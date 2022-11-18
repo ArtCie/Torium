@@ -141,8 +141,7 @@ class DBManager(DBManagerBase):
                 e.reminder,
                 e.schedule_period,
                 e.name,
-                g.name as group_name,
-                ARRAY(SELECT user_id from events_users WHERE event_id = e.id) as users
+                g.name as group_name
             FROM
                 events e 
             INNER JOIN
@@ -218,3 +217,19 @@ class DBManager(DBManagerBase):
                 id = %(event_id)s
         """
         return self.fetch_one(query, data)
+
+    def get_event_users(self, data):
+        query = """
+            SELECT
+                u.id,
+                u.email
+            FROM
+                users u 
+            INNER JOIN
+                events_users eu
+            ON
+                eu.user_id = u.id
+            WHERE
+                eu.event_id = %(event_id)s
+        """
+        return self.fetch_all(query, data)
