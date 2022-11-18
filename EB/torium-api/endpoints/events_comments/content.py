@@ -48,8 +48,6 @@ class Content:
         for name, count in INTERVALS:
             value = seconds // count
             if value:
-                if value == 1:
-                    name = name.rstrip('s')
                 return f"{int(value)} {name} ago"
 
 
