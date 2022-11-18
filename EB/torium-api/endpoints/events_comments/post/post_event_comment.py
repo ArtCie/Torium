@@ -14,6 +14,9 @@ class PostEventComment:
         self._valid_user_event_relation()
         events_comments_id = self._post_event_comment()
         self._send_schedule_push_notification_comments_event(events_comments_id)
+        return {
+            "events_comments_id": events_comments_id
+        }
 
     def _valid_user_event_relation(self):
         data = {

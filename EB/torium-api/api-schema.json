@@ -1559,7 +1559,15 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": { },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "event_comments_id": {
+                          "type": "integer",
+                          "example": 8
+                        }
+                      }
+                    },
                     "status": {
                       "type": "object",
                       "properties": {
