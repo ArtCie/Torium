@@ -142,7 +142,9 @@ class DBManager(DBManagerBase):
                 e.schedule_period,
                 e.name,
                 g.name as group_name,
-                ug.status
+                ug.status,
+                eu.user_id,
+                ug.user_id
             FROM
                 events e 
             INNER JOIN
@@ -156,9 +158,11 @@ class DBManager(DBManagerBase):
             INNER JOIN
                 users_groups ug
             ON
-                ug.user_id = eu.user_id
+                ug.group_id = e.group_id
             WHERE
-                eu.user_id = %(user_id)s
+                ug.user_id = %(user_id)s
+            AND 
+            	eu.user_id = %(user_id)s
             ORDER BY
                 e.event_timestamp
             ASC
