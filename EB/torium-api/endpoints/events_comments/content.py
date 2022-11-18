@@ -44,7 +44,7 @@ class Content:
             ('minutes', 60),
             ('seconds', 1),
         )
-        seconds = event_timestamp.timestamp() - self._timestamp.timestamp()
+        seconds = self._timestamp.timestamp() - event_timestamp.timestamp()
         for name, count in INTERVALS:
             value = seconds // count
             if value:
