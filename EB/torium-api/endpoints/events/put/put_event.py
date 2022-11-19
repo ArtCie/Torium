@@ -40,7 +40,7 @@ class PutEvent:
         return self._db_manager.update_event(data)
 
     def _update_users_event(self):
-        current_users = self._select_event_users()
+        current_users = [row["user_id"] for row in self._select_event_users()]
         self._insert_event_users(current_users)
         self._delete_event_users(current_users)
 
@@ -48,10 +48,10 @@ class PutEvent:
         data = {
             "id": self._content.id
         }
-        return self._db_manager.select_event_users(data)[0]
+        return self._db_manager.select_event_users(data)
 
-    def _insert_event_users(self, current_users: DictRow):
-        users_to_insert = set(self._content.users) - set(list(current_users))
+    def _insert_event_users(self, current_users: list):
+        users_to_insert = set(self._content.users) - set(current_users)
         for user_id in users_to_insert:
             self._insert_event_user(user_id)
 
@@ -63,8 +63,8 @@ class PutEvent:
         }
         self._db_manager.insert_event_user(data)
 
-    def _delete_event_users(self, current_users: DictRow):
-        users_to_remove = set(current_users) - set(list(self._content.users))
+    def _delete_event_users(self, current_users: list):
+        users_to_remove = set(current_users) - set(self._content.users)
         for user_id in users_to_remove:
             self._delete_event_user(user_id)
 
