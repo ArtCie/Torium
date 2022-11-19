@@ -66,7 +66,15 @@ class PutEvent:
     def _delete_event_users(self, current_users: list):
         users_to_remove = set(current_users) - set(self._content.users)
         for user_id in users_to_remove:
+            self._delete_event_comment(user_id)
             self._delete_event_user(user_id)
+
+    def _delete_event_comment(self, user_id: int):
+        data = {
+            "user_id": user_id,
+            "event_id": self._content.id
+        }
+        self._db_manager.delete_user_comments(data)
 
     def _delete_event_user(self, user_id: int):
         data = {
