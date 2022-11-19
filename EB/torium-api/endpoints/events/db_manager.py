@@ -210,7 +210,7 @@ class DBManager(DBManagerBase):
             FROM
                 event_reminders
             WHERE
-                now() - trigger_timestamp > '1 day'::interval
+                now() - trigger_timestamp < '1 day'::interval
             AND 
                 event_id = %(event_id)s
         """
