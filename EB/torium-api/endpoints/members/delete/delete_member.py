@@ -9,7 +9,23 @@ class DeleteMember:
 
     def process_request(self):
         self._delete_invitation()
+        self._delete_comments()
+        self._delete_events()
         self._delete_member()
+
+    def _delete_events(self):
+        data = {
+            "group_id": self._content.group_id,
+            "user_id": self._content.user_id,
+        }
+        self._db_manager.delete_events(data)
+
+    def _delete_comments(self):
+        data = {
+            "group_id": self._content.group_id,
+            "user_id": self._content.user_id,
+        }
+        self._db_manager.delete_comments(data)
 
     def _delete_invitation(self):
         data = {

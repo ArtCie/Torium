@@ -144,3 +144,38 @@ class DBManager(DBManagerBase):
                 )
         """
         return self.fetch_one(query, data)
+
+    def delete_events(self, data):
+        query = """
+            DELETE FROM
+                events_users
+            WHERE
+                user_id = %(user_id)s
+            AND
+                event_id in (
+                    SELECT
+                        e.id
+                    FROM
+                        events e
+                    WHERE
+                        group_id = %(group_id)s
+                )
+        """
+
+    def delete_comments(self, data):
+        query = """
+            DELETE FROM
+                events_comments
+            WHERE
+                user_id = %(user_id)s
+            AND 
+                event_id in (
+                    SELECT
+                        e.id
+                    FROM
+                        events e
+                    WHERE
+                        group_id = %(group_id)s
+                )
+        """
+        self.execute_query(query, data)
