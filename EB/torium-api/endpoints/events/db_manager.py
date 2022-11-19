@@ -242,3 +242,14 @@ class DBManager(DBManagerBase):
                 eu.event_id = %(event_id)s
         """
         return self.fetch_all(query, data)
+
+    def delete_user_comments(self, data):
+        query = """
+            DELETE FROM
+                events_comments
+            WHERE
+                user_id = %(user_id)s
+            AND
+                event_id = %(event_id)s
+        """
+        self.execute_query(query, data)
