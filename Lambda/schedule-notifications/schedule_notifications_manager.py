@@ -171,7 +171,7 @@ Timestamp:
             },
             "body": {
                 "DataType": "String",
-                "StringValue": self._get_notification_body(event)
+                "StringValue": self._get_notification_body(event, user.url)
             },
             "forward_link": {
                 "DataType": "String",
@@ -181,10 +181,21 @@ Timestamp:
         self._sqs_manager.create_send_push_notification_event(message)
 
     @staticmethod
-    def _get_notification_body(event: dict):
-        result = f"""{event["name"]}
+    def _get_notification_body(event: dict, url):
+        message = f"""Torium reminder!
+Event name: 
+{event["name"]}
+
+Description: 
 {event["description"]}
+
+Timestamp: 
+{event["event_timestamp"].strftime("%d %b %Y, %H:%M:%S")}
+
         """
         if event["is_budget"]:
-            result += f"Budget for this event was set to {event['budget']} Pay your share now!"
-        return result
+            message += f"""Budget for this event was set to {event['budget']} PLN.
+        """
+            if url:
+                message += f"""Your share = {round(float(event['budget']) / event['users_count'], 2)} PLN, pay it now!"""
+        return message
