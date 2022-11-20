@@ -53,7 +53,7 @@ class DBManager(DBManagerBase):
                 name,
                 event_timestamp,
                 description,
-                (SELECT count(*) FROM event_users WHERE event_id = %(event_id)s) as users_count
+                (SELECT count(*) FROM events_users WHERE event_id = %(event_id)s) as users_count
             FROM
                 events
             WHERE
