@@ -30,7 +30,7 @@ class PostNotifyEvent:
         data = {
             "event_id": self._event_id
         }
-        if not self._db_manager.valid_latency(data):
+        if self._db_manager.valid_latency(data):
             raise LatencyError("Event can be send once in 24 hours!")
 
     def _select_event_timestamp(self):
