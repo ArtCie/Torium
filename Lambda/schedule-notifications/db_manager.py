@@ -51,7 +51,9 @@ class DBManager(DBManagerBase):
                 is_budget,
                 budget,
                 name,
-                description
+                event_timestamp,
+                description,
+                (SELECT count(*) FROM event_users WHERE event_id = %(event_id)s) as users_count
             FROM
                 events
             WHERE

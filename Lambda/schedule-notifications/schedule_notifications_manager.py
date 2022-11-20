@@ -71,15 +71,23 @@ class ScheduleNotificationsManager:
 
     @staticmethod
     def _build_message(event: dict, user: User):
-        message = f"""
-Torium reminder!
-{event["name"]}:
-Description: {event["description"]}
+        message = f"""Torium reminder!
+Event name: 
+{event["name"]}
 
-        """
-        if user.url and event["is_budget"]:
+Description: 
+{event["description"]}
+
+Timestamp: 
+{event["event_timestamp"].strftime("%d %b %Y, %H:%M:%S")}
+
+"""
+        if event["is_budget"]:
             message += f"""Budget for this event was set to {event['budget']}
-You can pay it here: {user.url}"""
+            
+            """
+            if user.url:
+                message += f"""Your share = {round(float(event['budget']) / event['users_count'], 2)}, you can pay it here: {user.url}"""
         return message
 
     @log
