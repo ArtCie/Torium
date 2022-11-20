@@ -37,7 +37,7 @@ class PinpointManager:
             <head></head>
             <body>
                 <h2>{first_row}</h2>
-                <pre>{last_row}</pre>
+                <span style="white-space: pre-line">{last_row}</span>
             </body>
         </html>
         """
