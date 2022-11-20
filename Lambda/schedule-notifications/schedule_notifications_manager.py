@@ -83,11 +83,10 @@ Timestamp:
 
 """
         if event["is_budget"]:
-            message += f"""Budget for this event was set to {event['budget']}
-            
-            """
+            message += f"""Budget for this event was set to {event['budget']} PLN
+"""
             if user.url:
-                message += f"""Your share = {round(float(event['budget']) / event['users_count'], 2)}, you can pay it here: {user.url}"""
+                message += f"""Your share = {round(float(event['budget']) / event['users_count'], 2)} PLN, you can pay it here: {user.url}"""
         return message
 
     @log
