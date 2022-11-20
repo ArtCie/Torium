@@ -192,10 +192,10 @@ Description:
 Timestamp: 
 {event["event_timestamp"].strftime("%d %b %Y, %H:%M:%S")}
 
-        """
+"""
         if event["is_budget"]:
             message += f"""Budget for this event was set to {event['budget']} PLN.
-        """
+"""
             if url:
                 message += f"""Your share = {round(float(event['budget']) / event['users_count'], 2)} PLN, pay it now!"""
         return message
