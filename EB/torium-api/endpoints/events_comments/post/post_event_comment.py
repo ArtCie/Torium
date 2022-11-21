@@ -33,7 +33,7 @@ class PostEventComment:
             "comment": self._content.comment,
             "timestamp": self._content.timestamp
         }
-        return self._db_manager.post_event_comment(data)
+        return self._db_manager.post_event_comment(data)[0]
 
     def _send_schedule_push_notification_comments_event(self, events_comments_id):
         message = {
