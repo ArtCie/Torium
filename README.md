@@ -30,6 +30,12 @@ Output - None
 
 <br />
 
+**Data Flow**
+
+<img width="961" alt="Screenshot 2023-01-28 at 11 00 36" src="https://user-images.githubusercontent.com/72509444/215260197-3dcfc3c4-cf00-4a3f-b54f-9bc435873067.png">
+
+<br />
+
 #### **cognito-postSignUp**
 
 Trigger - cognito user pool
@@ -39,6 +45,12 @@ General Use Case - after succesfull registration update user status to confirmed
 Input - cognito user id
 
 Output - None
+
+<br />
+
+**Data Flow**
+
+<img width="826" alt="Screenshot 2023-01-28 at 11 01 21" src="https://user-images.githubusercontent.com/72509444/215260229-0b79cb8b-b244-4a53-8afc-1a2aff217384.png">
 
 <br />
 
@@ -109,6 +121,12 @@ Output - None
 
 <br />
 
+**Data Flow**
+
+<img width="1267" alt="Screenshot 2023-01-28 at 11 03 47" src="https://user-images.githubusercontent.com/72509444/215260332-7dd6f3b0-83b6-468b-abce-8196e91e94a1.png">
+
+<br />
+
 ### **Send additional PUSH notifications**
 
 #### **send-pushGroupInvitation**
@@ -124,6 +142,12 @@ Output - None
 
 <br />
 
+**Data Flow**
+
+<img width="1001" alt="Screenshot 2023-01-28 at 11 06 39" src="https://user-images.githubusercontent.com/72509444/215260502-2e307f49-4dbf-44a5-89d4-76e898089429.png">
+
+<br />
+
 #### **schedule-pushNotification-comments**
 
 Trigger - SQS schedule-push-notification-comments-queue.fifo queue
@@ -133,6 +157,12 @@ General Use Case - send PUSH about new comment to each event member
 Input - user_id + timestamp + events_comments_id + event_id + comment
 
 Output - None
+
+<br />
+
+**Data Flow**
+
+<img width="1003" alt="Screenshot 2023-01-28 at 11 05 42" src="https://user-images.githubusercontent.com/72509444/215260476-847c1c8d-16cc-44b3-8972-a74999440541.png">
 
 <br />
 
@@ -148,3 +178,11 @@ Input - None
 
 Output - Discord Notifications
 
+<br />
+
+**Data Flow**
+
+<img width="672" alt="Screenshot 2023-01-28 at 11 07 19" src="https://user-images.githubusercontent.com/72509444/215260578-f6176e60-f36f-4fb0-9b22-d55128dfbd71.png">
+
+
+<br />
