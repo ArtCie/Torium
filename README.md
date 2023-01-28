@@ -29,6 +29,7 @@ Input - user email + cognito user id
 Output - None
 
 <br />
+
 #### cognito-postSignUp
 
 Trigger - cognito user pool
@@ -44,6 +45,7 @@ Output - None
 
 
 <br />
+
 #### schedule-events
 
 Trigger - AWS EventBridge schedule
@@ -56,6 +58,7 @@ Output - send SQS message to schedule-notifications-queue.fifo for each event to
 
 
 <br />
+
 #### schedule-notifications
 
 Trigger - SQS schedule-notifications-queue.fifo queue
@@ -68,6 +71,7 @@ Output - send SQS message to send-sms.fifo, send-email.fifo or send-pushNotifica
 
 
 <br />
+
 #### send-sms
 
 Trigger - SQS send-sms.fifo queue
@@ -80,6 +84,7 @@ Output - None
 
 
 <br />
+
 #### send-email
 
 Trigger - SQS send-email.fifo queue
@@ -92,6 +97,7 @@ Output - None
 
 
 <br />
+
 #### send-pushNotification
 
 Trigger - SQS send-pushNotification-queue.fifo queue
@@ -104,10 +110,12 @@ Output - None
 
 
 <br />
+
 ### Send additional PUSH notifications
 
 
 <br />
+
 #### send-pushGroupInvitation
 
 Trigger - SQS send_push_group_invitation-queue.fifo queue
@@ -120,6 +128,7 @@ Output - None
 
 
 <br />
+
 #### schedule-pushNotification-comments
 
 Trigger - SQS schedule-push-notification-comments-queue.fifo queue
@@ -131,6 +140,7 @@ Input - user_id + timestamp + events_comments_id + event_id + comment
 Output - None
 
 <br />
+
 #### torium-alerts
 
 Trigger - EventBridge event execute periodically
