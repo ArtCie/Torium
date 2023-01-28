@@ -14,6 +14,39 @@ psycopg2==2.9.5
 
 ## **Architecture**
 
+Whole architecture integrates 13 AWS Services:
+
+**IAM** - resources permissions
+
+**SQS** - communication between API and Lambda functions
+
+**Lambda** - micro services
+
+**Relational Database Service** - Relational PostgreSQL Database
+
+**S3** - object storage
+
+**Secrets Manager** - store and fetch DB credentials
+
+**Cognito** - user authentication module
+
+**Amplify** - integration with Flutter app
+
+**CloudWatch** - logs
+
+**SNS** - handling PUSH notifications and SMS messages
+
+**SES** - send email
+
+**EventBridge** - launch resources periodically
+
+
+<br />
+
+---
+
+<br />
+
 ### **Lambda functions**
 
 ### **Cognito handlers**
@@ -186,3 +219,75 @@ Output - Discord Notifications
 
 
 <br />
+
+---
+
+<br />
+
+## Elastic Beanstalk API
+
+28 endpoints implemented in Python using Flask framework - server is set up in EC2 using Elastic Beanstalk service.
+Completed schema can be found in EB/torium-api/api-schema.json
+
+<img width="1383" alt="Screenshot 2023-01-28 at 11 17 43" src="https://user-images.githubusercontent.com/72509444/215261247-5308685d-ba76-4178-8f83-c9de77292ce2.png">
+
+
+### Event endpoints
+
+#### /event
+methods - POST, GET, PUT, DELETE
+
+#### /event/notify
+methods - POST
+
+#### /event/comment
+methods - POST, GET, PUT, DELETE
+
+### Group endpoints
+
+#### /groups
+methods - POST, GET, PUT, DELETE
+
+#### /groups/invitation
+methods - GET
+
+#### /groups/invitation/count
+methods - GET
+
+#### /group/members
+methods - GET, DELETE, POST
+
+#### /group/members/status
+methods - PATCH
+
+#### /group/members/role
+methods - PATCH
+
+### Organization endpoints
+
+#### /organizations
+methods - GET
+
+### Users endpoints
+
+#### /users
+methods - GET
+
+#### /users/preferences
+methods - PATCH
+
+#### /users/mobile
+methods - POST, PATCH
+
+#### /users/organization
+methods - PATCH
+
+#### /users/device
+methods - PATCH
+
+#### /users/email
+methods - GET
+
+---
+
+Feel free to contact me if you have any questions, more than happy to answer :) 
