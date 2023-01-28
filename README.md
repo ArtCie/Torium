@@ -28,7 +28,7 @@ Input - user email + cognito user id
 
 Output - None
 
-
+<br />
 #### cognito-postSignUp
 
 Trigger - cognito user pool
@@ -43,7 +43,7 @@ Output - None
 ### Schedule and send notifications
 
 
-
+<br />
 #### schedule-events
 
 Trigger - AWS EventBridge schedule
@@ -55,7 +55,7 @@ Input - None
 Output - send SQS message to schedule-notifications-queue.fifo for each event to be triggered - event_id + event_timestamp
 
 
-
+<br />
 #### schedule-notifications
 
 Trigger - SQS schedule-notifications-queue.fifo queue
@@ -67,7 +67,7 @@ Input - event_id + event_timestamp
 Output - send SQS message to send-sms.fifo, send-email.fifo or send-pushNotification-queue.fifo for each notification to be sent - message + user_id + event_reminders_id + event_timestamp + information about receiver (phone_number, email or device_arn)
 
 
-
+<br />
 #### send-sms
 
 Trigger - SQS send-sms.fifo queue
@@ -79,7 +79,7 @@ Input - user_id + timestamp + event_reminders_id + mobile_number + message
 Output - None
 
 
-
+<br />
 #### send-email
 
 Trigger - SQS send-email.fifo queue
@@ -91,7 +91,7 @@ Input - user_id + timestamp + event_reminders_id + email_address + message
 Output - None
 
 
-
+<br />
 #### send-pushNotification
 
 Trigger - SQS send-pushNotification-queue.fifo queue
@@ -103,11 +103,11 @@ Input - user_id + timestamp + event_reminders_id + device_arn + message
 Output - None
 
 
-
+<br />
 ### Send additional PUSH notifications
 
 
-
+<br />
 #### send-pushGroupInvitation
 
 Trigger - SQS send_push_group_invitation-queue.fifo queue
@@ -119,7 +119,7 @@ Input - user_id + group_invitation_logs_id + group_id + timestamp
 Output - None
 
 
-
+<br />
 #### schedule-pushNotification-comments
 
 Trigger - SQS schedule-push-notification-comments-queue.fifo queue
@@ -130,6 +130,7 @@ Input - user_id + timestamp + events_comments_id + event_id + comment
 
 Output - None
 
+<br />
 #### torium-alerts
 
 Trigger - EventBridge event execute periodically
