@@ -64,8 +64,38 @@ Input - event_id + event_timestamp
 Output - send SQS message to send-sms.fifo, send-email.fifo or send-pushNotification-queue.fifo for each notification to be sent - message + user_id + event_reminders_id + event_timestamp + information about receiver (phone_number, email or device_arn)
 
 #### send-sms
+
+Trigger - SQS send-sms.fifo queue
+
+General Use Case - send SMS with reminder and save information to logs
+
+Input - user_id + timestamp + event_reminders_id + mobile_number + message
+
+Output - None
+
+
 #### send-email
+
+Trigger - SQS send-email.fifo queue
+
+General Use Case - send email with reminder and save information to logs
+
+Input - user_id + timestamp + event_reminders_id + email_address + message
+
+Output - None
+
+
 #### send-pushNotification
+
+Trigger - SQS send-pushNotification-queue.fifo queue
+
+General Use Case - send PUSH with reminder and save information to logs
+
+Input - user_id + timestamp + event_reminders_id + device_arn + message
+
+Output - None
+
+
 #### send-pushGroupInvitation
 #### schedule-pushNotification-comments
 #### torium-alerts
