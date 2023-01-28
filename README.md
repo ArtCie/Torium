@@ -12,13 +12,13 @@ flask_cors==3.0.10
 psycopg2==2.9.5
 ```
 
-## Architecture
+## **Architecture**
 
-### Lambda functions
+### **Lambda functions**
 
-### Cognito handlers
+### **Cognito handlers**
 
-#### cognito-preSignUp
+#### **cognito-preSignUp**
 
 Trigger - cognito user pool
 
@@ -30,7 +30,7 @@ Output - None
 
 <br />
 
-#### cognito-postSignUp
+#### **cognito-postSignUp**
 
 Trigger - cognito user pool
 
@@ -40,13 +40,11 @@ Input - cognito user id
 
 Output - None
 
-
-### Schedule and send notifications
-
-
 <br />
 
-#### schedule-events
+### **Schedule and send notifications**
+
+#### **schedule-events**
 
 Trigger - AWS EventBridge schedule
 
@@ -59,7 +57,7 @@ Output - send SQS message to schedule-notifications-queue.fifo for each event to
 
 <br />
 
-#### schedule-notifications
+#### **schedule-notifications**
 
 Trigger - SQS schedule-notifications-queue.fifo queue
 
@@ -72,7 +70,7 @@ Output - send SQS message to send-sms.fifo, send-email.fifo or send-pushNotifica
 
 <br />
 
-#### send-sms
+#### **send-sms**
 
 Trigger - SQS send-sms.fifo queue
 
@@ -85,7 +83,7 @@ Output - None
 
 <br />
 
-#### send-email
+#### **send-email**
 
 Trigger - SQS send-email.fifo queue
 
@@ -98,7 +96,7 @@ Output - None
 
 <br />
 
-#### send-pushNotification
+#### **send-pushNotification**
 
 Trigger - SQS send-pushNotification-queue.fifo queue
 
@@ -111,12 +109,9 @@ Output - None
 
 <br />
 
-### Send additional PUSH notifications
+### **Send additional PUSH notifications**
 
-
-<br />
-
-#### send-pushGroupInvitation
+#### **send-pushGroupInvitation**
 
 Trigger - SQS send_push_group_invitation-queue.fifo queue
 
@@ -129,7 +124,7 @@ Output - None
 
 <br />
 
-#### schedule-pushNotification-comments
+#### **schedule-pushNotification-comments**
 
 Trigger - SQS schedule-push-notification-comments-queue.fifo queue
 
@@ -141,7 +136,9 @@ Output - None
 
 <br />
 
-#### torium-alerts
+### **DevOps**
+
+#### **torium-alerts**
 
 Trigger - EventBridge event execute periodically
 
