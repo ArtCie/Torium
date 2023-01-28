@@ -1,0 +1,5 @@
+boto3==1.26.14
+botocore==1.29.14
+Flask==2.2.2
+flask_cors==3.0.10
+psycopg2==2.9.5
