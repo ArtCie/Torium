@@ -16,9 +16,9 @@ psycopg2==2.9.5
 
 ### Lambda functions
 
-#### Cognito handlers
+### Cognito handlers
 
-##### cognito-preSignUp
+#### cognito-preSignUp
 
 Trigger - cognito user pool
 
@@ -104,12 +104,39 @@ Output - None
 
 
 
+### Send additional PUSH notifications
+
+
+
 #### send-pushGroupInvitation
+
+Trigger - SQS send_push_group_invitation-queue.fifo queue
+
+General Use Case - send PUSH with group invitation to user
+
+Input - user_id + group_invitation_logs_id + group_id + timestamp
+
+Output - None
 
 
 
 #### schedule-pushNotification-comments
 
+Trigger - SQS schedule-push-notification-comments-queue.fifo queue
 
+General Use Case - send PUSH about new comment to each event member
+
+Input - user_id + timestamp + events_comments_id + event_id + comment
+
+Output - None
 
 #### torium-alerts
+
+Trigger - EventBridge event execute periodically
+
+General Use Case - go through all AWS resources, find bugs and send errors to Discord
+
+Input - None
+
+Output - Discord Notifications
+
