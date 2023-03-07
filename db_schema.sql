@@ -128,7 +128,6 @@ CREATE TABLE organizations(
 );
 
 INSERT INTO organizations(name, url, file_name) VALUES
-('Santander', 'https://www.centrum24.pl/centrum24-web/login', 'santander.png'),
 ('PKO', 'https://www.ipko.pl/', 'pko.png'),
 ('Pekao', 'https://www.pekao24.pl/logowanie', 'pekao.png'),
 ('ING', 'https://login.ingbank.pl/mojeing/app/#login', 'ing.png');
